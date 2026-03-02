@@ -1,31 +1,50 @@
-# 🌐 Our Presence – Digital Growth Agency
+# 🚀 Kamlesh Patil – Digital Marketing & Creative Specialist
 
-We are a full-service digital agency delivering high-performance solutions in marketing, design, and development.
+Helping brands grow through strategy, content, creativity, and technology.
 
-## 🚀 Services
+---
+
+## 💼 Services
 
 ### 📈 Digital Marketing
-- SEO
-- Social Media Marketing
-- Paid Advertising
+- SEO (Search Engine Optimization)
+- Social Media Marketing (SMM)
+- Paid Advertising (Meta & Google Ads)
 - Account Handling & Growth Strategy
 
-### 🎨 Creative Services
-- Graphic Design
-- Video Editing
-- Ad Creatives
-- Branding
+### ✍️ Content Marketing
+- Content Strategy
+- Blog Writing
+- Website Copywriting
+- Social Media Captions
+- Ad Copywriting
+- SEO-Optimized Articles
+
+### 🎨 Graphic Design
+- Logo Design
+- Pamphlet / Flyer Design
+- Social Media Creatives
+- Poster & Banner Design
+- Business Cards & Branding Materials
+
+### 🎬 Video Editing
+- Reels Editing
+- Promotional Videos
+- Ad Video Editing
+- YouTube Video Editing
 
 ### 💻 Website Development
 - Business Websites
 - Landing Pages
-- E-Commerce
-- Portfolio Sites
+- Portfolio Websites
+- E-Commerce Websites
 
-## 🎯 Our Mission
-To help brands grow faster, smarter, and stronger in the digital world.
+---
 
 ## 📬 Contact
-Email:
-Instagram:
-Website:
+📧 patilkamlesh1811@gmail.com  
+📸 https://instagram.com/thekalpesh9  
+
+---
+
+Creative. Strategic. Performance-Driven.
