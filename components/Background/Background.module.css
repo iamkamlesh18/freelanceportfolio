@@ -1,32 +1,28 @@
 .blob1,
 .blob2 {
-  position: fixed;          /* MUST be fixed */
-  width: 500px;
-  height: 500px;
+  position: fixed;
+  width: 600px;
+  height: 600px;
   border-radius: 50%;
-  filter: blur(160px);
-  animation: float 12s ease-in-out infinite alternate;
-  z-index: -1;              /* Behind content */
+  filter: blur(180px);
+  animation: float 14s ease-in-out infinite alternate;
   pointer-events: none;
+  z-index: -1;
 }
 
-.blob1,
+.blob1 {
+  background: rgba(138, 43, 226, 0.35);
+  top: -200px;
+  left: -200px;
+}
+
 .blob2 {
-  position: fixed;
-  width: 500px;
-  height: 500px;
-  border-radius: 50%;
-  filter: blur(160px);
-  animation: float 12s ease-in-out infinite alternate;
-  z-index: 0;              /* NOT -1 */
-  pointer-events: none;
+  background: rgba(0, 150, 255, 0.35);
+  bottom: -200px;
+  right: -200px;
 }
 
 @keyframes float {
-  from {
-    transform: translateY(0px);
-  }
-  to {
-    transform: translateY(60px);
-  }
+  from { transform: translateY(0px); }
+  to   { transform: translateY(80px); }
 }

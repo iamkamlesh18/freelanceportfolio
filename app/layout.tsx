@@ -1,11 +1,12 @@
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
-import Background from "@/components/Background/Background";
+import WhatsAppButton from "@/components/WhatsAppButton/WhatsAppButton";
+import SocialBar from "@/components/SocialBar/SocialBar";
 
 export const metadata = {
   title: "Kamlesh | Portfolio",
-  description: "Modular Next.js Portfolio with Clean Architecture",
+  description: "Developer & Architect Portfolio",
 };
 
 export default function RootLayout({
@@ -16,12 +17,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Background />
-        <div style={{ position: "relative", zIndex: 1 }}>
-          <Navbar />
-          {children}
-          <Footer />
-        </div>
+        <Navbar />
+        <SocialBar />
+        {children}
+        <Footer />
+        <WhatsAppButton />
       </body>
     </html>
   );

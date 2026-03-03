@@ -1,0 +1,1109 @@
+
+
+=================================================
+FILE: ./components/SectionDivider/SectionDivider.module.css
+=================================================
+.divider {
+  width: 100%;
+  height: 1px;
+  margin: 80px 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.15),
+    transparent
+  );
+}
+
+=================================================
+FILE: ./components/SectionDivider/SectionDivider.tsx
+=================================================
+import styles from "./SectionDivider.module.css";
+
+export default function SectionDivider() {
+  return <div className={styles.divider} />;
+}
+
+=================================================
+FILE: ./components/Navbar/Navbar.module.css
+=================================================
+.wrapper {
+  position: sticky;
+  top: 20px;
+  display: flex;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.navbar {
+  width: 92%;
+  max-width: 1100px;
+  padding: 14px 30px;
+  border-radius: 50px;
+  backdrop-filter: blur(18px);
+  background: var(--glass-bg);
+  border: 1px solid var(--border-soft);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+/* Links */
+
+.links {
+  display: flex;
+  gap: 32px;
+  position: relative;
+}
+
+.link {
+  text-decoration: none;
+  color: white;
+  font-size: 0.9rem;
+  position: relative;
+  transition: 0.3s ease;
+}
+
+/* Animated underline */
+.link::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.link:hover::after {
+  width: 100%;
+}
+
+/* Micro dot indicator */
+.active {
+  color: var(--accent);
+}
+
+.active::before {
+  content: "";
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 5px;
+  height: 5px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+/* Right side */
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Theme toggle */
+
+.themeToggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: white;
+  transition: 0.3s ease;
+}
+
+.themeToggle:hover {
+  transform: rotate(20deg);
+}
+
+/* Mobile menu */
+
+.menuBtn {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.menuBtn span {
+  width: 22px;
+  height: 2px;
+  background: white;
+  transition: 0.3s ease;
+}
+
+.menuOpen span:nth-child(1) {
+  transform: rotate(45deg) translateY(6px);
+}
+
+.menuOpen span:nth-child(2) {
+  opacity: 0;
+}
+
+.menuOpen span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-6px);
+}
+
+@media (max-width: 768px) {
+  .links {
+    position: absolute;
+    top: 80px;
+    right: 0;
+    flex-direction: column;
+    background: var(--bg-secondary);
+    padding: 25px 40px;
+    gap: 20px;
+    transform: translateX(100%);
+    transition: 0.3s ease;
+  }
+
+  .open {
+    transform: translateX(0);
+  }
+
+  .menuBtn {
+    display: flex;
+  }
+}
+
+=================================================
+FILE: ./components/Navbar/Navbar.tsx
+=================================================
+"use client";
+
+import styles from "./Navbar.module.css";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
+
+export default function Navbar() {
+  const pathname = usePathname();
+  const [open, setOpen] = useState(false);
+  const [dark, setDark] = useState(true);
+
+  useEffect(() => {
+    document.body.dataset.theme = dark ? "dark" : "light";
+  }, [dark]);
+
+  const navLinks = [
+    { name: "About", path: "/about" },
+    { name: "Services", path: "/services" },
+    { name: "Portfolio", path: "/portfolio" },
+  ];
+
+  return (
+    <nav className={styles.wrapper}>
+      <div className={styles.navbar}>
+        <Link href="/" className={styles.logo}>
+          Kamlesh
+        </Link>
+
+        <div className={`${styles.links} ${open ? styles.open : ""}`}>
+          {navLinks.map((link) => {
+            const isActive = pathname === link.path;
+            return (
+              <Link
+                key={link.path}
+                href={link.path}
+                className={`${styles.link} ${
+                  isActive ? styles.active : ""
+                }`}
+                onClick={() => setOpen(false)}
+              >
+                {link.name}
+              </Link>
+            );
+          })}
+        </div>
+
+        <div className={styles.right}>
+          <button
+            className={styles.themeToggle}
+            onClick={() => setDark(!dark)}
+          >
+            {dark ? "☀" : "🌙"}
+          </button>
+
+          <div
+            className={`${styles.menuBtn} ${
+              open ? styles.menuOpen : ""
+            }`}
+            onClick={() => setOpen(!open)}
+          >
+            <span />
+            <span />
+            <span />
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
+}
+
+=================================================
+FILE: ./components/Footer/Footer.tsx
+=================================================
+import styles from "./Footer.module.css";
+import Link from "next/link";
+
+export default function Footer() {
+  return (
+    <footer className={styles.footer}>
+      <div className={styles.container}>
+        <div className={styles.brand}>
+          <h3>Kamlesh</h3>
+          <p>
+            Building scalable systems with clarity, performance
+            and intention.
+          </p>
+        </div>
+
+        <div className={styles.links}>
+          <div>
+            <h4>Navigate</h4>
+            <Link href="/">Home</Link>
+            <Link href="/about">About</Link>
+            <Link href="/services">Services</Link>
+            <Link href="/portfolio">Portfolio</Link>
+            <Link href="/contact">Contact</Link>
+          </div>
+
+          <div>
+            <h4>Connect</h4>
+            <a
+              href="https://github.com/iamkamlesh18"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub
+            </a>
+            <a
+              href="https://www.linkedin.com/in/iamkamlesh18/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LinkedIn
+            </a>
+            <a
+              href="mailto:patilkamlesh1811@gmail.com"
+            >
+              Email
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div className={styles.bottom}>
+        © {new Date().getFullYear()} Kamlesh. All rights reserved.
+      </div>
+    </footer>
+  );
+}
+
+=================================================
+FILE: ./components/Footer/Footer.module.css
+=================================================
+.footer {
+  margin-top: 120px;
+  padding-top: 60px;
+  backdrop-filter: blur(12px);
+  background: var(--glass-bg);
+  border-top: 1px solid var(--border-soft);
+}
+
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+.brand h3 {
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.brand p {
+  max-width: 320px;
+  opacity: 0.7;
+  font-size: 0.9rem;
+}
+
+.links {
+  display: flex;
+  gap: 80px;
+}
+
+.links h4 {
+  margin-bottom: 14px;
+  font-size: 0.95rem;
+}
+
+.links a {
+  display: block;
+  margin-bottom: 10px;
+  text-decoration: none;
+  color: white;
+  font-size: 0.85rem;
+  opacity: 0.8;
+  transition: 0.3s ease;
+}
+
+.links a:hover {
+  opacity: 1;
+  color: var(--accent);
+  transform: translateX(4px);
+}
+
+.bottom {
+  margin-top: 50px;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 0.8rem;
+  opacity: 0.6;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .links {
+    gap: 40px;
+  }
+}
+
+=================================================
+FILE: ./components/Background/Background.tsx
+=================================================
+"use client";
+
+import styles from "./Background.module.css";
+
+export default function Background() {
+  return (
+    <>
+      <div className={styles.blob1}></div>
+      <div className={styles.blob2}></div>
+    </>
+  );
+}
+
+=================================================
+FILE: ./components/Background/Background.module.css
+=================================================
+.blob1,
+.blob2 {
+  position: fixed;          /* MUST be fixed */
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  filter: blur(160px);
+  animation: float 12s ease-in-out infinite alternate;
+  z-index: -1;              /* Behind content */
+  pointer-events: none;
+}
+
+.blob1,
+.blob2 {
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  filter: blur(160px);
+  animation: float 12s ease-in-out infinite alternate;
+  z-index: 0;              /* NOT -1 */
+  pointer-events: none;
+}
+
+@keyframes float {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(60px);
+  }
+}
+
+=================================================
+FILE: ./components/ServiceCard/ServiceCard.tsx
+=================================================
+import styles from "./ServiceCard.module.css";
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+export default function ServiceCard({ title, description }: Props) {
+  return (
+    <div className={styles.card}>
+      <h2>{title}</h2>
+      <p>{description}</p>
+    </div>
+  );
+}
+
+=================================================
+FILE: ./components/ServiceCard/ServiceCard.module.css
+=================================================
+.card {
+  padding: 30px;
+  background: var(--glass-bg);
+  border-radius: 12px;
+  border: 1px solid var(--border-soft);
+  transition: 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+}
+
+.card h2 {
+  margin-bottom: 10px;
+}
+
+=================================================
+FILE: ./next-env.d.ts
+=================================================
+/// <reference types="next" />
+/// <reference types="next/image-types/global" />
+
+// NOTE: This file should not be edited
+// see https://nextjs.org/docs/app/building-your-application/configuring/typescript for more information.
+
+
+=================================================
+FILE: ./next.config.js
+=================================================
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  output: "export",
+  basePath: "/freelanceportfolio",
+  trailingSlash: true,
+  images: {
+    unoptimized: true,
+  },
+};
+
+module.exports = nextConfig;
+
+=================================================
+FILE: ./eslint.config.mjs
+=================================================
+import { defineConfig, globalIgnores } from "eslint/config";
+import nextVitals from "eslint-config-next/core-web-vitals";
+import nextTs from "eslint-config-next/typescript";
+
+const eslintConfig = defineConfig([
+  ...nextVitals,
+  ...nextTs,
+  // Override default ignores of eslint-config-next.
+  globalIgnores([
+    // Default ignores of eslint-config-next:
+    ".next/**",
+    "out/**",
+    "build/**",
+    "next-env.d.ts",
+  ]),
+]);
+
+export default eslintConfig;
+
+
+=================================================
+FILE: ./hooks/useMagnetic.ts
+=================================================
+import { useEffect, useRef } from "react";
+
+export function useMagnetic() {
+  const ref = useRef<HTMLAnchorElement | null>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const handleMove = (e: MouseEvent) => {
+      const rect = el.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+
+      el.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+    };
+
+    const reset = () => {
+      el.style.transform = "translate(0,0)";
+    };
+
+    el.addEventListener("mousemove", handleMove);
+    el.addEventListener("mouseleave", reset);
+
+    return () => {
+      el.removeEventListener("mousemove", handleMove);
+      el.removeEventListener("mouseleave", reset);
+    };
+  }, []);
+
+  return ref;
+}
+
+=================================================
+FILE: ./hooks/useReveal.ts
+=================================================
+import { useEffect, useRef, useState } from "react";
+
+export function useReveal() {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (ref.current) observer.observe(ref.current);
+
+    return () => observer.disconnect();
+  }, []);
+
+  return { ref, visible };
+}
+
+=================================================
+FILE: ./app/layout.tsx
+=================================================
+import "./globals.css";
+import Navbar from "@/components/Navbar/Navbar";
+import Footer from "@/components/Footer/Footer";
+import Background from "@/components/Background/Background";
+
+export const metadata = {
+  title: "Kamlesh | Portfolio",
+  description: "Modular Next.js Portfolio with Clean Architecture",
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <body>
+        <Background />
+        <div style={{ position: "relative", zIndex: 1 }}>
+          <Navbar />
+          {children}
+          <Footer />
+        </div>
+      </body>
+    </html>
+  );
+}
+
+=================================================
+FILE: ./app/portfolio/data.ts
+=================================================
+export const portfolioData = [
+  {
+    title: "Freelance Portfolio",
+    description: "Modular Next.js static portfolio architecture.",
+  },
+  {
+    title: "Enterprise Dashboard",
+    description: "Scalable UI system with strict component isolation.",
+  },
+];
+
+=================================================
+FILE: ./app/portfolio/Portfolio.module.css
+=================================================
+.container {
+  min-height: 80vh;
+  padding: 80px 10%;
+}
+
+.container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+}
+
+.grid {
+  display: grid;
+  gap: 30px;
+}
+
+.card {
+  padding: 30px;
+  background: var(--glass-bg);
+  border-radius: 12px;
+  border: 1px solid var(--border-soft);
+  transition: 0.4s ease;
+}
+
+.card:hover {
+  transform: rotateX(6deg) rotateY(-6deg) scale(1.05);
+  border-color: var(--accent);
+}
+
+=================================================
+FILE: ./app/portfolio/page.tsx
+=================================================
+import styles from "./Portfolio.module.css";
+import { portfolioData } from "./data";
+
+export default function Portfolio() {
+  return (
+    <main className={styles.container}>
+      <h1>Portfolio</h1>
+      <div className={styles.grid}>
+        {portfolioData.map((item, index) => (
+          <div key={index} className={styles.card}>
+            <h2>{item.title}</h2>
+            <p>{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </main>
+  );
+}
+
+=================================================
+FILE: ./app/about/About.module.css
+=================================================
+.container {
+  min-height: 80vh;
+  padding: 80px 10%;
+}
+
+.container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.container p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 700px;
+}
+
+=================================================
+FILE: ./app/about/data.ts
+=================================================
+export const aboutData = {
+  heading: "About Me",
+  content:
+    "I specialize in building modular front-end systems using modern architecture principles and clean separation of concerns.",
+};
+
+=================================================
+FILE: ./app/about/page.tsx
+=================================================
+import styles from "./About.module.css";
+import { aboutData } from "./data";
+
+export default function About() {
+  return (
+    <main className={styles.container}>
+      <h1>{aboutData.heading}</h1>
+      <p>{aboutData.content}</p>
+    </main>
+  );
+}
+
+=================================================
+FILE: ./app/page.module.css
+=================================================
+.hero {
+  position: relative;
+  min-height: 95vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10%;
+  overflow: hidden;
+  text-align: center;
+}
+
+.content {
+  max-width: 800px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 1s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.title {
+  font-size: 3rem;
+  line-height: 1.2;
+}
+
+.title span {
+  background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.subtitle {
+  margin-top: 20px;
+  opacity: 0.8;
+}
+
+.actions {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Magnetic buttons base */
+
+.primary,
+.secondary {
+  padding: 12px 26px;
+  border-radius: 30px;
+  transition: 0.3s ease;
+  text-decoration: none;
+}
+
+.primary {
+  background: var(--accent);
+  color: black;
+}
+
+.secondary {
+  border: 1px solid white;
+  color: white;
+}
+
+/* Floating blobs */
+
+.blob1,
+.blob2 {
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  filter: blur(120px);
+  animation: float 8s ease-in-out infinite alternate;
+}
+
+.blob1 {
+  background: rgba(138, 43, 226, 0.4);
+  top: -100px;
+  left: -100px;
+}
+
+.blob2 {
+  background: rgba(0, 150, 255, 0.4);
+  bottom: -100px;
+  right: -100px;
+}
+
+@keyframes float {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(40px);
+  }
+}
+
+=================================================
+FILE: ./app/services/data.ts
+=================================================
+export const servicesData = [
+  {
+    title: "Web Development",
+    description: "Modern, scalable, and SEO-friendly web applications.",
+  },
+  {
+    title: "UI Architecture",
+    description: "Component-based, isolated and maintainable UI systems.",
+  },
+  {
+    title: "Performance Optimization",
+    description: "Fast loading, efficient rendering and clean builds.",
+  },
+];
+
+=================================================
+FILE: ./app/services/Services.module.css
+=================================================
+.section {
+  padding: 120px 10%;
+  text-align: center;
+}
+
+.title {
+  font-size: 2.2rem;
+  margin-bottom: 60px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 40px;
+}
+
+.card {
+  padding: 40px 30px;
+  border-radius: 20px;
+  background: rgba(20, 20, 20, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  transition: 0.4s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  border-color: var(--accent);
+}
+
+.card h3 {
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+}
+
+.card p {
+  opacity: 0.7;
+  font-size: 0.9rem;
+}
+
+/* Reveal animation */
+
+.hidden {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 0.8s ease;
+}
+
+.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+=================================================
+FILE: ./app/services/page.tsx
+=================================================
+"use client";
+
+import styles from "./Services.module.css";
+import { useReveal } from "@/hooks/useReveal";
+
+export default function Services() {
+  const { ref, visible } = useReveal();
+
+  const services = [
+    {
+      title: "Frontend Architecture",
+      desc: "Modern UI systems built with scalability and performance in mind.",
+    },
+    {
+      title: "Backend Engineering",
+      desc: "Secure, scalable APIs and automation-driven systems.",
+    },
+    {
+      title: "DevOps & CI/CD",
+      desc: "Streamlined deployment pipelines and release management.",
+    },
+  ];
+
+  return (
+    <section className={styles.section}>
+      <h2 className={styles.title}>What I Build</h2>
+
+      <div
+        ref={ref}
+        className={`${styles.grid} ${
+          visible ? styles.show : styles.hidden
+        }`}
+      >
+        {services.map((service, i) => (
+          <div key={i} className={styles.card}>
+            <h3>{service.title}</h3>
+            <p>{service.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+=================================================
+FILE: ./app/globals.css
+=================================================
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif; 
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    #0b0b0b 0%,
+    #0e0e12 100%
+  );
+
+  color: var(--text-primary);
+  scroll-behavior: smooth;
+}
+
+/* Design Tokens */
+:root {
+  --bg-primary: #0b0b0b;
+  --bg-secondary: #121212;
+  --glass-bg: rgba(255, 255, 255, 0.03);
+
+  --accent: #f5b041;
+  --accent-soft: #ffd27a;
+
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+
+  --border-soft: rgba(255, 255, 255, 0.08);
+}
+
+/* Subtle Luxury Glow */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(245,176,65,0.12), transparent 45%),
+    radial-gradient(circle at 80% 70%, rgba(245,176,65,0.08), transparent 50%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+=================================================
+FILE: ./app/page.tsx
+=================================================
+"use client";
+
+import styles from "./page.module.css";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+
+export default function Home() {
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    setLoaded(true);
+  }, []);
+
+  return (
+    <section className={styles.hero}>
+
+      <div className={`${styles.content} ${loaded ? styles.show : ""}`}>
+        <h1 className={styles.title}>
+          Building Digital <span>Experiences</span>
+          <br />
+          That Feel Alive.
+        </h1>
+
+        <p className={styles.subtitle}>
+          Developer. Architect. Problem Solver.
+        </p>
+
+        <div className={styles.actions}>
+          <Link href="/portfolio" className={styles.primary}>
+            View Work
+          </Link>
+          <Link href="/contact" className={styles.secondary}>
+            Contact Me
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+=================================================
+FILE: ./app/contact/data.ts
+=================================================
+export const contactData = {
+  heading: "Contact Me",
+  email: "patilkamlesh1811@gmail.com",
+  message: "Let's build something scalable and clean.",
+};
+
+=================================================
+FILE: ./app/contact/Contact.module.css
+=================================================
+.container {
+  min-height: 80vh;
+  padding: 80px 10%;
+}
+
+.container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.container p {
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.container a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+=================================================
+FILE: ./app/contact/page.tsx
+=================================================
+import styles from "./Contact.module.css";
+import { contactData } from "./data";
+
+export default function Contact() {
+  return (
+    <main className={styles.container}>
+      <h1>{contactData.heading}</h1>
+      <p>{contactData.message}</p>
+      <a href={`mailto:${contactData.email}`}>
+        {contactData.email}
+      </a>
+    </main>
+  );
+}

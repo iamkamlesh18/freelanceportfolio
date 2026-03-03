@@ -6,22 +6,6 @@
   margin: 0;
 }
 
-html,
-body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif; 
-  position: relative;
-  z-index: 1;
-  background: linear-gradient(
-    180deg,
-    #0b0b0b 0%,
-    #0e0e12 100%
-  );
-
-  color: var(--text-primary);
-  scroll-behavior: smooth;
-}
-
-/* Design Tokens */
 :root {
   --bg-primary: #0b0b0b;
   --bg-secondary: #121212;
@@ -36,14 +20,39 @@ body {
   --border-soft: rgba(255, 255, 255, 0.08);
 }
 
-/* Subtle Luxury Glow */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background:
-    radial-gradient(circle at 20% 30%, rgba(245,176,65,0.12), transparent 45%),
-    radial-gradient(circle at 80% 70%, rgba(245,176,65,0.08), transparent 50%);
-  z-index: -1;
-  pointer-events: none;
+[data-theme="light"] {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f5;
+  --glass-bg: rgba(0, 0, 0, 0.04);
+
+  --text-primary: #111111;
+  --text-secondary: rgba(0, 0, 0, 0.7);
+  --border-soft: rgba(0, 0, 0, 0.1);
+}
+
+html,
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  scroll-behavior: smooth;
+}
+
+.section {
+  padding: 120px 10%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 4vw, 3.2rem);
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: clamp(1.8rem, 3vw, 2.2rem);
+}
+
+p {
+  line-height: 1.7;
 }

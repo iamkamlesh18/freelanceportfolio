@@ -7,17 +7,18 @@ import { useState, useEffect } from "react";
 
 export default function Navbar() {
   const pathname = usePathname();
-  const [open, setOpen] = useState(false);
   const [dark, setDark] = useState(true);
 
   useEffect(() => {
-    document.body.dataset.theme = dark ? "dark" : "light";
+    document.documentElement.dataset.theme = dark ? "dark" : "light";
   }, [dark]);
 
-  const navLinks = [
+  const links = [
     { name: "About", path: "/about" },
     { name: "Services", path: "/services" },
     { name: "Portfolio", path: "/portfolio" },
+    { name: "Blog", path: "/blog" },
+    { name: "Contact", path: "/contact" },
   ];
 
   return (
@@ -27,43 +28,26 @@ export default function Navbar() {
           Kamlesh
         </Link>
 
-        <div className={`${styles.links} ${open ? styles.open : ""}`}>
-          {navLinks.map((link) => {
-            const isActive = pathname === link.path;
-            return (
-              <Link
-                key={link.path}
-                href={link.path}
-                className={`${styles.link} ${
-                  isActive ? styles.active : ""
-                }`}
-                onClick={() => setOpen(false)}
-              >
-                {link.name}
-              </Link>
-            );
-          })}
+        <div className={styles.links}>
+          {links.map((link) => (
+            <Link
+              key={link.path}
+              href={link.path}
+              className={`${styles.link} ${
+                pathname === link.path ? styles.active : ""
+              }`}
+            >
+              {link.name}
+            </Link>
+          ))}
         </div>
 
-        <div className={styles.right}>
-          <button
-            className={styles.themeToggle}
-            onClick={() => setDark(!dark)}
-          >
-            {dark ? "☀" : "🌙"}
-          </button>
-
-          <div
-            className={`${styles.menuBtn} ${
-              open ? styles.menuOpen : ""
-            }`}
-            onClick={() => setOpen(!open)}
-          >
-            <span />
-            <span />
-            <span />
-          </div>
-        </div>
+        <button
+          className={styles.themeToggle}
+          onClick={() => setDark(!dark)}
+        >
+          {dark ? "☀" : "🌙"}
+        </button>
       </div>
     </nav>
   );
