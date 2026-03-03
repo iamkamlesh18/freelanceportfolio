@@ -1,7 +1,6 @@
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton/WhatsAppButton";
 import type { Metadata } from "next";
 
 const siteUrl = "https://iamkamlesh18.github.io/freelanceportfolio";
@@ -57,8 +56,6 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Footer />
-        <WhatsAppButton />
-
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
