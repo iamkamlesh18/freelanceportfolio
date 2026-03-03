@@ -4,10 +4,28 @@ echo "Updating FULL_PROJECT_DUMP.txt..."
 
 {
 echo "================================================="
+echo "FULL PROJECT DUMP (AUTO-GENERATED)"
+echo "================================================="
+echo ""
+echo "Purpose:"
+echo "- This file provides a complete snapshot of the project."
+echo "- Includes project structure (tree view)."
+echo "- Includes all relevant source file contents."
+echo "- Excludes build folders and node_modules."
+echo ""
+echo "Why this exists:"
+echo "- For quick sharing and AI/code review analysis."
+echo "- For architecture audits."
+echo "- For backup visibility in a single file."
+echo "- Automatically updated on every git push via Husky."
+echo ""
+echo "================================================="
 echo "PROJECT STRUCTURE"
 echo "================================================="
 echo ""
+
 tree -I "node_modules|.next|out|build|.git|hooks" -h -a -L 5
+
 echo ""
 echo ""
 echo "================================================="
