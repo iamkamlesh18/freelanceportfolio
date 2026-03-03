@@ -57,3 +57,21 @@ p {
   line-height: 1.6;
   color: var(--text-secondary);
 }
+
+/* Stable Sticky Footer Layout */
+
+html,
+body {
+  height: 100%;
+}
+
+body.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  min-height: calc(100vh - 160px);
+}

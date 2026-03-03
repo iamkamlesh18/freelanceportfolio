@@ -1,11 +1,10 @@
 .hero {
   position: relative;
-  min-height: 95vh;
+  min-height: calc(100vh - 100px); /* subtract navbar space */
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0 10%;
-  overflow: hidden;
   text-align: center;
 }
 

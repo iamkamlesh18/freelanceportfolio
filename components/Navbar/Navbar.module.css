@@ -1,9 +1,10 @@
 .wrapper {
   position: sticky;
-  top: 20px;
+  top: 0; /* Stick to very top */
+  z-index: 1000;
+  padding: 20px 0 0 0; /* visual breathing space */
   display: flex;
   justify-content: center;
-  z-index: 1000;
 }
 
 .navbar {

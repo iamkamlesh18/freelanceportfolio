@@ -13,13 +13,6 @@ export const metadata: Metadata = {
   },
   description:
     "Portfolio of Kamlesh — Developer, Architect, and Digital Systems Builder.",
-  keywords: [
-    "Kamlesh",
-    "Web Developer",
-    "Frontend Architect",
-    "Digital Marketing",
-    "Salesforce Developer",
-  ],
   openGraph: {
     title: "Kamlesh Portfolio",
     description:
@@ -38,30 +31,12 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: "Kamlesh",
-    url: siteUrl,
-    sameAs: [
-      "https://github.com/iamkamlesh18",
-      "https://linkedin.com/in/iamkamlesh18",
-    ],
-    jobTitle: "Developer & Architect",
-  };
-
   return (
     <html lang="en">
-      <body>
+      <body className="app">
         <Navbar />
-        {children}
+        <main className="main-content">{children}</main>
         <Footer />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(jsonLd),
-          }}
-        />
       </body>
     </html>
   );
