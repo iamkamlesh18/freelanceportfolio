@@ -19,32 +19,6 @@ PROJECT STRUCTURE
 =================================================
 
 [4.0K]  .
-├── [4.0K]  .github
-│   └── [4.0K]  workflows
-│       └── [ 657]  deploy.yml
-├── [ 480]  .gitignore
-├── [4.0K]  .husky
-│   ├── [4.0K]  _
-│   │   ├── [   1]  .gitignore
-│   │   ├── [  39]  applypatch-msg
-│   │   ├── [  39]  commit-msg
-│   │   ├── [ 551]  h
-│   │   ├── [ 160]  husky.sh
-│   │   ├── [  39]  post-applypatch
-│   │   ├── [  39]  post-checkout
-│   │   ├── [  39]  post-commit
-│   │   ├── [  39]  post-merge
-│   │   ├── [  39]  post-rewrite
-│   │   ├── [  39]  pre-applypatch
-│   │   ├── [  39]  pre-auto-gc
-│   │   ├── [  39]  pre-commit
-│   │   ├── [  39]  pre-merge-commit
-│   │   ├── [  39]  pre-push
-│   │   ├── [  39]  pre-rebase
-│   │   └── [  39]  prepare-commit-msg
-│   └── [  63]  pre-push
-├── [ 642]  FULL_PROJECT_DUMP.txt
-├── [1.4K]  README.md
 ├── [4.0K]  app
 │   ├── [4.0K]  about
 │   │   ├── [2.1K]  About.module.css
@@ -62,17 +36,21 @@ PROJECT STRUCTURE
 │   │   ├── [ 151]  data.ts
 │   │   └── [1.9K]  page.tsx
 │   ├── [1.1K]  globals.css
+│   ├── [4.0K]  home
+│   │   ├── [2.9K]  data.ts
+│   │   ├── [6.3K]  Home.module.css
+│   │   └── [3.6K]  Homepage.tsx
 │   ├── [1.0K]  layout.tsx
-│   ├── [3.2K]  page.module.css
-│   ├── [4.5K]  page.tsx
+│   ├── [   0]  page.module.css
+│   ├── [  98]  page.tsx
 │   ├── [4.0K]  portfolio
-│   │   ├── [ 924]  Portfolio.module.css
 │   │   ├── [ 642]  data.ts
-│   │   └── [ 913]  page.tsx
+│   │   ├── [ 913]  page.tsx
+│   │   └── [ 924]  Portfolio.module.css
 │   ├── [4.0K]  services
-│   │   ├── [2.5K]  Services.module.css
 │   │   ├── [ 378]  data.ts
-│   │   └── [2.7K]  page.tsx
+│   │   ├── [2.7K]  page.tsx
+│   │   └── [2.5K]  Services.module.css
 │   └── [ 581]  sitemap.ts
 ├── [4.0K]  components
 │   ├── [4.0K]  Footer
@@ -82,18 +60,44 @@ PROJECT STRUCTURE
 │       ├── [2.1K]  Navbar.module.css
 │       └── [1.5K]  Navbar.tsx
 ├── [ 465]  eslint.config.mjs
-├── [ 228]  next-env.d.ts
+├── [ 642]  FULL_PROJECT_DUMP.txt
+├── [4.0K]  .github
+│   └── [4.0K]  workflows
+│       └── [ 657]  deploy.yml
+├── [ 480]  .gitignore
+├── [4.0K]  .husky
+│   ├── [4.0K]  _
+│   │   ├── [  39]  applypatch-msg
+│   │   ├── [  39]  commit-msg
+│   │   ├── [   1]  .gitignore
+│   │   ├── [ 551]  h
+│   │   ├── [ 160]  husky.sh
+│   │   ├── [  39]  post-applypatch
+│   │   ├── [  39]  post-checkout
+│   │   ├── [  39]  post-commit
+│   │   ├── [  39]  post-merge
+│   │   ├── [  39]  post-rewrite
+│   │   ├── [  39]  pre-applypatch
+│   │   ├── [  39]  pre-auto-gc
+│   │   ├── [  39]  pre-commit
+│   │   ├── [  39]  pre-merge-commit
+│   │   ├── [  39]  prepare-commit-msg
+│   │   ├── [  39]  pre-push
+│   │   └── [  39]  pre-rebase
+│   └── [  63]  pre-push
 ├── [ 212]  next.config.js
-├── [184K]  package-lock.json
+├── [ 228]  next-env.d.ts
 ├── [ 597]  package.json
+├── [184K]  package-lock.json
 ├── [4.0K]  public
 │   ├── [  94]  robots.txt
 │   └── [1.1K]  sitemap.xml
+├── [1.4K]  README.md
 ├── [4.0K]  scripts
 │   └── [1.5K]  generate-dump.sh
 └── [ 713]  tsconfig.json
 
-18 directories, 56 files
+19 directories, 59 files
 
 
 =================================================
@@ -887,25 +891,180 @@ export default function sitemap(): MetadataRoute.Sitemap {
 }
 
 =================================================
-FILE: ./app/page.module.css
+FILE: ./app/home/data.ts
 =================================================
-/* ================= HERO ================= */
+export const homeData = {
+  hero: {
+    titleLine1: "Growth Systems",
+    highlight: "Built to Scale",
+    titleLine2: "For Modern Businesses.",
+    subtitle:
+      "I combine strategy, content, performance marketing, and technology to build digital ecosystems that generate measurable growth.",
+    primaryCta: {
+      label: "View Work",
+      link: "/portfolio",
+    },
+    secondaryCta: {
+      label: "Work With Me",
+      link: "/contact",
+    },
+  },
+
+  core: {
+    title: "What I Bring To The Table",
+    items: [
+      {
+        title: "Strategic Clarity",
+        desc:
+          "Clear positioning, target audience definition, and measurable performance goals before execution begins.",
+      },
+      {
+        title: "Creative Communication",
+        desc:
+          "Content, branding, and messaging that build authority and convert attention into trust.",
+      },
+      {
+        title: "Performance Execution",
+        desc:
+          "Paid ads, SEO, automation systems, and optimized web platforms designed to scale.",
+      },
+    ],
+  },
+
+  growth: {
+    title: "How I Help Brands Grow",
+    items: [
+      {
+        title: "Lead Generation Systems",
+        desc:
+          "Landing pages, funnels, ad campaigns, and automation workflows that convert visitors into clients.",
+      },
+      {
+        title: "Authority Building",
+        desc:
+          "SEO, content strategy, and brand positioning to dominate your niche.",
+      },
+      {
+        title: "Conversion Optimization",
+        desc:
+          "Data-backed improvements that increase ROI without increasing ad spend.",
+      },
+    ],
+  },
+
+  trust: {
+    title: "Trusted By Growing Brands",
+    logos: [
+      "Healthcare Clinic",
+      "E-commerce Store",
+      "Real Estate Consultant",
+      "Personal Brand",
+      "Local Startup",
+    ],
+  },
+
+  process: {
+    title: "My 3-Step Growth Process",
+    steps: [
+      {
+        title: "Strategy",
+        desc:
+          "Deep research, competitor analysis, audience psychology, and a clear performance roadmap.",
+      },
+      {
+        title: "Build",
+        desc:
+          "Content systems, marketing campaigns, and optimized platforms aligned with your growth goals.",
+      },
+      {
+        title: "Scale",
+        desc:
+          "Data-driven optimization, automation, and continuous improvement for sustainable ROI.",
+      },
+    ],
+  },
+
+  testimonials: {
+    title: "Client Feedback",
+    items: [
+      {
+        quote:
+          "Kamlesh transformed our digital presence into a consistent lead generation system.",
+        author: "Founder, Healthcare Brand",
+      },
+      {
+        quote:
+          "Clear strategy. Clean execution. Real, measurable results.",
+        author: "E-commerce Business Owner",
+      },
+      {
+        quote:
+          "Professional, structured, and performance-focused approach.",
+        author: "Marketing Director",
+      },
+    ],
+  },
+};
+
+=================================================
+FILE: ./app/home/Home.module.css
+=================================================
+/* =======================================================
+   GLOBAL SECTION SYSTEM
+======================================================= */
+
+.section {
+  padding: 110px 6%;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.sectionTitle {
+  font-size: clamp(1.8rem, 2.5vw, 2.3rem);
+  margin-bottom: 70px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+/* =======================================================
+   HERO
+======================================================= */
 
 .hero {
-  min-height: 75vh;
+  position: relative;
+  min-height: 90vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 10%;
+  padding: 0 6%;
   text-align: center;
-  perspective: 1000px;
+  overflow: hidden;
+}
+
+.glow {
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, var(--accent-soft), transparent 70%);
+  opacity: 0.08;
+  top: -200px;
+  right: -200px;
+  animation: floatGlow 14s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes floatGlow {
+  from { transform: translateY(0); }
+  to { transform: translateY(60px); }
 }
 
 .content {
-  max-width: 800px;
+  position: relative;
+  max-width: 850px;
   opacity: 0;
   transform: translateY(40px);
-  transition: 0.8s ease;
+  transition: 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .show {
@@ -914,200 +1073,433 @@ FILE: ./app/page.module.css
 }
 
 .title {
-  font-size: clamp(2.5rem, 4vw, 3.5rem);
-  line-height: 1.2;
+  font-size: clamp(2.8rem, 5vw, 3.8rem);
+  line-height: 1.1;
+  font-weight: 600;
 }
 
 .title span {
-  background: linear-gradient(
-    90deg,
-    var(--accent),
-    var(--accent-soft)
-  );
-  background-clip: text;
+  background: linear-gradient(90deg, var(--accent), var(--accent-soft));
   -webkit-background-clip: text;
   color: transparent;
-  -webkit-text-fill-color: transparent;
 }
 
 .subtitle {
-  margin-top: 20px;
-  opacity: 0.8;
+  margin-top: 28px;
+  font-size: 1.1rem;
+  opacity: 0.85;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
 }
 
+/* =======================================================
+   BUTTONS
+======================================================= */
+
 .actions {
-  margin-top: 40px;
+  margin-top: 50px;
   display: flex;
+  gap: 24px;
   justify-content: center;
-  gap: 20px;
+  flex-wrap: wrap;
 }
 
 .primary,
 .secondary {
-  padding: 12px 28px;
-  border-radius: 30px;
-  transition: 0.3s ease;
-  text-decoration: none;
+  padding: 15px 34px;
+  border-radius: 50px;
   font-weight: 500;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.35s ease;
 }
 
 .primary {
-  background: var(--accent);
+  background: linear-gradient(90deg, var(--accent), var(--accent-soft));
   color: black;
 }
 
 .primary:hover {
-  transform: translateY(-3px);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
 }
 
 .secondary {
-  border: 1px solid var(--text-primary);
+  border: 1px solid var(--border-soft);
   color: var(--text-primary);
 }
 
 .secondary:hover {
   background: var(--glass-bg);
-  transform: translateY(-3px);
+  transform: translateY(-5px);
 }
 
+/* =======================================================
+   TRUST STRIP
+======================================================= */
 
-/* ================= SNAKE SECTION ================= */
-
-.snakeSection {
-  padding: 60px 6%;
-}
-
-.snake {
-  width: 100%;
-  height: 140px;
-}
-
-.snakePath {
-  fill: none;
-  stroke: var(--accent);
-  stroke-width: 4;
-  stroke-dasharray: 1000;
-  transition: stroke-dashoffset 0.15s linear;
-}
-
-
-/* ================= CORE / INTERACTIVE CARDS ================= */
-
-.valueSection {
-  padding: 100px 6%;
+.trustSection {
+  padding: 80px 6%;
+  border-top: 1px solid var(--border-soft);
+  border-bottom: 1px solid var(--border-soft);
   text-align: center;
 }
 
-.valueTitle {
-  margin-bottom: 60px;
+.trustTitle {
+  font-size: 0.85rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 45px;
+  opacity: 0.6;
 }
 
-.valueGrid {
+.trustGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 30px;
-  perspective: 1000px;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 35px;
+  align-items: center;
 }
 
-.valueCard {
-  padding: 30px;
-  border-radius: 18px;
-  background: var(--glass-bg);
-  border: 1px solid var(--border-soft);
-  transition: transform 0.2s ease, border-color 0.3s ease;
-  transform-style: preserve-3d;
-  will-change: transform;
+.logo {
+  padding: 18px;
+  opacity: 0.5;
+  font-weight: 500;
+  transition: 0.3s ease;
 }
 
-.valueCard h3 {
-  margin-bottom: 12px;
+.logo:hover {
+  opacity: 1;
+  transform: translateY(-4px);
 }
 
-.valueCard:hover {
-  border-color: var(--accent);
-}
+/* =======================================================
+   CARD GRID (CORE + GROWTH)
+======================================================= */
 
-
-/* ================= SKILLS SECTION ================= */
-
-.skillsSection {
-  padding: 100px 6%;
-}
-
-.skillsTitle {
-  text-align: center;
-  margin-bottom: 60px;
-}
-
-.skillsGrid {
-  max-width: 800px;
-  margin: 0 auto;
+.grid {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 40px;
 }
 
-.skillCard {
+.card {
+  padding: 45px;
+  border-radius: 22px;
+  background: var(--glass-bg);
+  border: 1px solid var(--border-soft);
   text-align: left;
-}
-
-.skillHeader {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  font-size: 0.9rem;
-}
-
-.progressBar {
-  height: 8px;
-  background: var(--border-soft);
-  border-radius: 20px;
+  transition: all 0.35s ease;
+  position: relative;
   overflow: hidden;
 }
 
-.progressFill {
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    var(--accent),
-    var(--accent-soft)
-  );
-  transition: width 1.2s ease;
+.card::before {
+  content: "";
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, var(--accent-soft), transparent 70%);
+  top: -60px;
+  right: -60px;
+  opacity: 0;
+  transition: 0.4s ease;
 }
 
-
-/* ================= SMOOTH SCROLL PERFORMANCE ================= */
-
-.hero,
-.snakeSection,
-.valueSection,
-.skillsSection {
-  will-change: transform;
+.card:hover::before {
+  opacity: 0.07;
 }
 
+.card:hover {
+  transform: translateY(-8px);
+  border-color: var(--accent);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.2);
+}
 
-/* ================= RESPONSIVE ================= */
+.card h3 {
+  margin-bottom: 18px;
+  font-size: 1.15rem;
+}
+
+.card p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  opacity: 0.85;
+}
+
+/* =======================================================
+   PROCESS TIMELINE
+======================================================= */
+
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 50px;
+  margin-top: 50px;
+}
+
+.step {
+  padding: 40px;
+  border-radius: 22px;
+  background: var(--glass-bg);
+  border: 1px solid var(--border-soft);
+  transition: 0.3s ease;
+}
+
+.step:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+}
+
+.circle {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+  color: black;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 22px auto;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* =======================================================
+   TESTIMONIALS
+======================================================= */
+
+.testimonialWrapper {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  min-height: 240px;
+}
+
+.testimonialCard {
+  position: absolute;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 55px;
+  border-radius: 24px;
+  background: var(--glass-bg);
+  border: 1px solid var(--border-soft);
+}
+
+.testimonialCard.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.testimonialCard p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 25px;
+}
+
+.testimonialCard span {
+  font-size: 0.9rem;
+  opacity: 0.6;
+  letter-spacing: 0.5px;
+}
+
+/* =======================================================
+   MOBILE OPTIMIZATION
+======================================================= */
 
 @media (max-width: 768px) {
 
   .hero {
-    min-height: 70vh;
-    padding: 0 6%;
+    min-height: 85vh;
   }
 
-  .actions {
-    flex-direction: column;
-    gap: 15px;
+  .glow {
+    width: 400px;
+    height: 400px;
+    top: -120px;
+    right: -120px;
+    opacity: 0.05;
   }
 
-  .valueSection,
-  .skillsSection {
-    padding: 80px 6%;
+  .title {
+    font-size: 2.2rem;
   }
 
-  .snake {
-    height: 100px;
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .section {
+    padding: 85px 6%;
+  }
+
+  .trustGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
+
+  .grid {
+    gap: 30px;
+  }
+
+  .card,
+  .step {
+    text-align: center;
+    padding: 35px;
+  }
+
+  .testimonialWrapper {
+    min-height: 300px;
+  }
+
+  .testimonialCard {
+    padding: 35px;
+  }
+
+  .testimonialCard p {
+    font-size: 1.05rem;
   }
 }
+
+=================================================
+FILE: ./app/home/Homepage.tsx
+=================================================
+"use client";
+
+import styles from "./Home.module.css";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { homeData } from "./data";
+
+export default function Homepage() {
+  const [loaded, setLoaded] = useState(false);
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    setLoaded(true);
+
+    const interval = setInterval(() => {
+      setActive((prev) =>
+        prev === homeData.testimonials.items.length - 1 ? 0 : prev + 1
+      );
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <>
+      {/* HERO */}
+      <section className={styles.hero}>
+        <div className={styles.glow}></div>
+
+        <div className={`${styles.content} ${loaded ? styles.show : ""}`}>
+          <h1 className={styles.title}>
+            {homeData.hero.titleLine1}{" "}
+            <span>{homeData.hero.highlight}</span>
+            <br />
+            {homeData.hero.titleLine2}
+          </h1>
+
+          <p className={styles.subtitle}>
+            {homeData.hero.subtitle}
+          </p>
+
+          <div className={styles.actions}>
+            <Link href={homeData.hero.primaryCta.link} className={styles.primary}>
+              {homeData.hero.primaryCta.label}
+            </Link>
+
+            <Link href={homeData.hero.secondaryCta.link} className={styles.secondary}>
+              {homeData.hero.secondaryCta.label}
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* TRUST STRIP */}
+      <section className={styles.trustSection}>
+        <p className={styles.trustTitle}>{homeData.trust.title}</p>
+        <div className={styles.trustGrid}>
+          {homeData.trust.logos.map((logo, i) => (
+            <div key={i} className={styles.logo}>
+              {logo}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CORE */}
+      <section className={styles.section}>
+        <h2 className={styles.sectionTitle}>{homeData.core.title}</h2>
+        <div className={styles.grid}>
+          {homeData.core.items.map((item, i) => (
+            <div key={i} className={styles.card}>
+              <h3>{item.title}</h3>
+              <p>{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* GROWTH */}
+      <section className={styles.section}>
+        <h2 className={styles.sectionTitle}>{homeData.growth.title}</h2>
+        <div className={styles.grid}>
+          {homeData.growth.items.map((item, i) => (
+            <div key={i} className={styles.card}>
+              <h3>{item.title}</h3>
+              <p>{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* PROCESS */}
+      <section className={styles.section}>
+        <h2 className={styles.sectionTitle}>{homeData.process.title}</h2>
+        <div className={styles.timeline}>
+          {homeData.process.steps.map((step, i) => (
+            <div key={i} className={styles.step}>
+              <div className={styles.circle}>{i + 1}</div>
+              <h3>{step.title}</h3>
+              <p>{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* TESTIMONIALS */}
+      <section className={styles.section}>
+        <h2 className={styles.sectionTitle}>
+          {homeData.testimonials.title}
+        </h2>
+
+        <div className={styles.testimonialWrapper}>
+          {homeData.testimonials.items.map((item, i) => (
+            <div
+              key={i}
+              className={`${styles.testimonialCard} ${
+                active === i ? styles.active : ""
+              }`}
+            >
+              <p>"{item.quote}"</p>
+              <span>- {item.author}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+    </>
+  );
+}
+
+=================================================
+FILE: ./app/page.module.css
+=================================================
+
 
 =================================================
 FILE: ./app/blog/seo-fundamentals/page.tsx
@@ -1655,183 +2047,10 @@ body.app {
 =================================================
 FILE: ./app/page.tsx
 =================================================
-"use client";
+import Homepage from "./home/Homepage";
 
-import styles from "./page.module.css";
-import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-
-export default function Home() {
-  const [loaded, setLoaded] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
-  const skillsRef = useRef<HTMLDivElement | null>(null);
-  const [skillsVisible, setSkillsVisible] = useState(false);
-
-  useEffect(() => {
-    setLoaded(true);
-
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setSkillsVisible(true);
-        }
-      },
-      { threshold: 0.4 }
-    );
-
-    if (skillsRef.current) {
-      observer.observe(skillsRef.current);
-    }
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      observer.disconnect();
-    };
-  }, []);
-
-  return (
-    <>
-      {/* HERO */}
-      <section className={styles.hero}>
-        <div
-          className={`${styles.content} ${loaded ? styles.show : ""}`}
-          style={{ transform: `translateY(${scrollY * 0.2}px)` }}
-        >
-          <h1 className={styles.title}>
-            Building Digital <span>Experiences</span>
-            <br />
-            That Feel Alive.
-          </h1>
-
-          <p className={styles.subtitle}>
-            Developer. Architect. Problem Solver.
-          </p>
-
-          <div className={styles.actions}>
-            <Link href="/portfolio" className={styles.primary}>
-              View Work
-            </Link>
-            <Link href="/contact" className={styles.secondary}>
-              Contact Me
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* INTERACTIVE SNAKE */}
-      <section className={styles.snakeSection}>
-        <svg viewBox="0 0 1000 200" className={styles.snake}>
-          <path
-            d="M0 100 Q250 0 500 100 T1000 100"
-            className={styles.snakePath}
-            style={{
-              strokeDashoffset: 1000 - scrollY * 1.5,
-            }}
-          />
-        </svg>
-      </section>
-
-      {/* CORE */}
-      <section className={styles.valueSection}>
-        <h2 className={styles.valueTitle}>Core Strengths</h2>
-
-        <div className={styles.valueGrid}>
-          <InteractiveCard
-            title="Architecture First"
-            desc="Scalable structure. Clean separation."
-          />
-          <InteractiveCard
-            title="Performance Focused"
-            desc="Optimized rendering and fast delivery."
-          />
-          <InteractiveCard
-            title="System Thinking"
-            desc="Cohesive systems designed for growth."
-          />
-        </div>
-      </section>
-
-      {/* SKILLS */}
-      <section className={styles.skillsSection} ref={skillsRef}>
-        <h2 className={styles.skillsTitle}>Technical Expertise</h2>
-
-        <div className={styles.skillsGrid}>
-          <Skill name="Frontend Architecture" level={90} active={skillsVisible} />
-          <Skill name="Next.js / React" level={85} active={skillsVisible} />
-          <Skill name="System Design" level={80} active={skillsVisible} />
-          <Skill name="Performance Optimization" level={88} active={skillsVisible} />
-        </div>
-      </section>
-    </>
-  );
-}
-
-function InteractiveCard({ title, desc }: { title: string; desc: string }) {
-  const ref = useRef<HTMLDivElement | null>(null);
-
-  const handleMove = (e: React.MouseEvent) => {
-    const rect = ref.current?.getBoundingClientRect();
-    if (!rect) return;
-
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    const rotateX = (y / rect.height - 0.5) * 10;
-    const rotateY = (x / rect.width - 0.5) * -10;
-
-    ref.current!.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-  };
-
-  const reset = () => {
-    if (ref.current) {
-      ref.current.style.transform = "rotateX(0deg) rotateY(0deg)";
-    }
-  };
-
-  return (
-    <div
-      ref={ref}
-      className={styles.valueCard}
-      onMouseMove={handleMove}
-      onMouseLeave={reset}
-    >
-      <h3>{title}</h3>
-      <p>{desc}</p>
-    </div>
-  );
-}
-
-function Skill({
-  name,
-  level,
-  active,
-}: {
-  name: string;
-  level: number;
-  active: boolean;
-}) {
-  return (
-    <div className={styles.skillCard}>
-      <div className={styles.skillHeader}>
-        <span>{name}</span>
-        <span>{level}%</span>
-      </div>
-      <div className={styles.progressBar}>
-        <div
-          className={styles.progressFill}
-          style={{
-            width: active ? `${level}%` : "0%",
-          }}
-        />
-      </div>
-    </div>
-  );
+export default function Page() {
+  return <Homepage />;
 }
 
 =================================================

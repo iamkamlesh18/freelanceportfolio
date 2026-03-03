@@ -1,18 +1,22 @@
+/* =======================================================
+   WRAPPER
+======================================================= */
+
 .wrapper {
   position: sticky;
-  top: 0; /* Stick to very top */
+  top: 0;
   z-index: 1000;
-  padding: 20px 0 0 0; /* visual breathing space */
+  padding: 18px 0 0 0;
   display: flex;
   justify-content: center;
 }
 
 .navbar {
   width: 92%;
-  max-width: 1100px;
-  padding: 14px 30px;
-  border-radius: 50px;
-  backdrop-filter: blur(18px);
+  max-width: 1150px;
+  padding: 16px 32px;
+  border-radius: 60px;
+  backdrop-filter: blur(20px);
   background: var(--glass-bg);
   border: 1px solid var(--border-soft);
 
@@ -22,19 +26,69 @@
   position: relative;
 }
 
+/* =======================================================
+   LOGO SYSTEM
+======================================================= */
+
 .logo {
-  font-weight: 600;
-  font-size: 1rem;
-  color: var(--accent);
   text-decoration: none;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
 }
 
-/* Desktop Links */
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.logoCircle {
+  color: var(--accent);
+  stroke-dasharray: 113;
+  stroke-dashoffset: 113;
+  transition: stroke-dashoffset 1.2s ease;
+}
+
+.draw {
+  stroke-dashoffset: 0;
+}
+
+.logoLetter {
+  position: absolute;
+  left: 13px;
+  font-weight: 600;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 1s ease 0.5s;
+}
+
+.logoText {
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  opacity: 0;
+  transition: opacity 1s ease 0.8s;
+}
+
+.fadeIn {
+  opacity: 1;
+}
+
+.logo:hover {
+  transform: translateY(-2px);
+  transition: 0.3s ease;
+}
+
+/* =======================================================
+   DESKTOP LINKS
+======================================================= */
 
 .links {
   display: flex;
-  gap: 32px;
-  position: relative;
+  gap: 36px;
+  align-items: center;
 }
 
 .link {
@@ -45,7 +99,6 @@
   transition: 0.3s ease;
 }
 
-/* Animated underline */
 .link::after {
   content: "";
   position: absolute;
@@ -61,24 +114,13 @@
   width: 100%;
 }
 
-/* Active indicator */
 .active {
   color: var(--accent);
 }
 
-.active::before {
-  content: "";
-  position: absolute;
-  bottom: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 5px;
-  height: 5px;
-  background: var(--accent);
-  border-radius: 50%;
-}
-
-/* Hamburger Button */
+/* =======================================================
+   HAMBURGER
+======================================================= */
 
 .menuBtn {
   display: none;
@@ -90,16 +132,14 @@
 }
 
 .menuBtn span {
-  width: 22px;
+  width: 24px;
   height: 2px;
   background: var(--text-primary);
   transition: 0.3s ease;
 }
 
-/* Animate to Cross */
-
 .menuOpen span:nth-child(1) {
-  transform: rotate(45deg) translateY(6px);
+  transform: rotate(45deg) translateY(7px);
 }
 
 .menuOpen span:nth-child(2) {
@@ -107,31 +147,63 @@
 }
 
 .menuOpen span:nth-child(3) {
-  transform: rotate(-45deg) translateY(-6px);
+  transform: rotate(-45deg) translateY(-7px);
 }
 
-/* Mobile */
+/* =======================================================
+   OVERLAY
+======================================================= */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s ease;
+  z-index: 900;
+}
+
+.overlayShow {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* =======================================================
+   MOBILE
+======================================================= */
 
 @media (max-width: 768px) {
+
   .menuBtn {
     display: flex;
   }
 
   .links {
-    position: absolute;
-    top: 70px;
-    right: 0;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 75%;
+    max-width: 320px;
+
     flex-direction: column;
-    gap: 22px;
-    padding: 30px 40px;
+    justify-content: center;
+    gap: 32px;
+
     background: var(--bg-secondary);
-    border-radius: 20px;
-    border: 1px solid var(--border-soft);
-    transform: translateX(120%);
-    transition: 0.4s ease;
+    border-left: 1px solid var(--border-soft);
+
+    transition: right 0.35s ease;
+    z-index: 1001;
   }
 
   .open {
-    transform: translateX(0);
+    right: 0;
+  }
+
+  .link {
+    font-size: 1rem;
   }
 }
