@@ -2,6 +2,7 @@
 const nextConfig = {
   output: "export",
   basePath: "/freelanceportfolio",
+  trailingSlash: true,
   images: {
     unoptimized: true,
   },
