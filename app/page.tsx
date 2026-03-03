@@ -1,4 +1,5 @@
 import styles from "./page.module.css";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -16,12 +17,13 @@ export default function Home() {
         </p>
 
         <div className={styles.actions}>
-          <a href="/portfolio" className={styles.primary}>
+          <Link href="/portfolio" className={styles.primary}>
             View Work
-          </a>
-          <a href="/contact" className={styles.secondary}>
+          </Link>
+
+          <Link href="/contact" className={styles.secondary}>
             Contact Me
-          </a>
+          </Link>
         </div>
       </div>
     </section>
