@@ -1,3 +1,0 @@
-*,:before,:after{box-sizing:border-box;margin:0;padding:0}html,body{color:#fff;scroll-behavior:smooth;background:#0f0f0f;font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif}:root{--primary:#111;--accent:#f5b041;--text-light:#ccc}
-.Navbar-module__dVeNwG__navbar{background:var(--primary);justify-content:space-between;align-items:center;padding:20px 10%;display:flex}.Navbar-module__dVeNwG__logo{color:var(--accent);font-size:1.2rem;font-weight:700}.Navbar-module__dVeNwG__links{gap:24px;display:flex}.Navbar-module__dVeNwG__links a{color:#fff;text-decoration:none;transition:all .3s}.Navbar-module__dVeNwG__links a:hover{color:var(--accent)}
-.Footer-module__rnk_JG__footer{text-align:center;color:var(--text-light);background:#0a0a0a;padding:40px 0;font-size:.9rem}
