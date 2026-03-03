@@ -1,12 +1,14 @@
 .card {
   padding: 30px;
-  background: #1a1a1a;
-  border-radius: 8px;
-  transition: 0.3s;
+  background: var(--glass-bg);
+  border-radius: 12px;
+  border: 1px solid var(--border-soft);
+  transition: 0.3s ease;
 }
 
 .card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
+  border-color: var(--accent);
 }
 
 .card h2 {

@@ -1,0 +1,32 @@
+.blob1,
+.blob2 {
+  position: fixed;          /* MUST be fixed */
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  filter: blur(160px);
+  animation: float 12s ease-in-out infinite alternate;
+  z-index: -1;              /* Behind content */
+  pointer-events: none;
+}
+
+.blob1,
+.blob2 {
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  filter: blur(160px);
+  animation: float 12s ease-in-out infinite alternate;
+  z-index: 0;              /* NOT -1 */
+  pointer-events: none;
+}
+
+@keyframes float {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(60px);
+  }
+}

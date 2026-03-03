@@ -1,6 +1,7 @@
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
+import Background from "@/components/Background/Background";
 
 export const metadata = {
   title: "Kamlesh | Portfolio",
@@ -15,9 +16,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Navbar />
-        {children}
-        <Footer />
+        <Background />
+        <div style={{ position: "relative", zIndex: 1 }}>
+          <Navbar />
+          {children}
+          <Footer />
+        </div>
       </body>
     </html>
   );

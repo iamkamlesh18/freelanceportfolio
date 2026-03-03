@@ -1,14 +1,26 @@
 .hero {
-  min-height: 90vh;
+  position: relative;
+  min-height: 95vh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0 10%;
+  overflow: hidden;
   text-align: center;
 }
 
 .content {
   max-width: 800px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 1s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .title {
@@ -17,54 +29,73 @@
 }
 
 .title span {
-  background: linear-gradient(
-    90deg,
-    var(--accent),
-    #8a2be2
-  );
+  background: linear-gradient(90deg, var(--accent), var(--accent-soft));
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  -webkit-text-fill-color: transparent;
 }
 
 .subtitle {
   margin-top: 20px;
-  font-size: 1.1rem;
   opacity: 0.8;
 }
 
 .actions {
-  margin-top: 35px;
+  margin-top: 40px;
   display: flex;
   justify-content: center;
   gap: 20px;
 }
 
-.primary {
-  padding: 12px 24px;
-  border-radius: 25px;
-  background: var(--accent);
-  color: black;
-  text-decoration: none;
-  font-weight: 500;
+/* Magnetic buttons base */
+
+.primary,
+.secondary {
+  padding: 12px 26px;
+  border-radius: 30px;
   transition: 0.3s ease;
+  text-decoration: none;
 }
 
-.primary:hover {
-  transform: translateY(-3px);
+.primary {
+  background: var(--accent);
+  color: black;
 }
 
 .secondary {
-  padding: 12px 24px;
-  border-radius: 25px;
   border: 1px solid white;
   color: white;
-  text-decoration: none;
-  transition: 0.3s ease;
 }
 
-.secondary:hover {
-  background: white;
-  color: black;
+/* Floating blobs */
+
+.blob1,
+.blob2 {
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  filter: blur(120px);
+  animation: float 8s ease-in-out infinite alternate;
+}
+
+.blob1 {
+  background: rgba(138, 43, 226, 0.4);
+  top: -100px;
+  left: -100px;
+}
+
+.blob2 {
+  background: rgba(0, 150, 255, 0.4);
+  bottom: -100px;
+  right: -100px;
+}
+
+@keyframes float {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(40px);
+  }
 }

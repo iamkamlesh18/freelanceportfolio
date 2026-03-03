@@ -12,8 +12,8 @@
   padding: 14px 30px;
   border-radius: 50px;
   backdrop-filter: blur(18px);
-  background: rgba(15, 15, 15, 0.75);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--glass-bg);
+  border: 1px solid var(--border-soft);
 
   display: flex;
   align-items: center;
@@ -133,7 +133,7 @@
     top: 80px;
     right: 0;
     flex-direction: column;
-    background: #111;
+    background: var(--bg-secondary);
     padding: 25px 40px;
     gap: 20px;
     transform: translateX(100%);
