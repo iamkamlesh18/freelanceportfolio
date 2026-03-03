@@ -19,6 +19,32 @@ PROJECT STRUCTURE
 =================================================
 
 [4.0K]  .
+├── [4.0K]  .github
+│   └── [4.0K]  workflows
+│       └── [ 657]  deploy.yml
+├── [ 480]  .gitignore
+├── [4.0K]  .husky
+│   ├── [4.0K]  _
+│   │   ├── [   1]  .gitignore
+│   │   ├── [  39]  applypatch-msg
+│   │   ├── [  39]  commit-msg
+│   │   ├── [ 551]  h
+│   │   ├── [ 160]  husky.sh
+│   │   ├── [  39]  post-applypatch
+│   │   ├── [  39]  post-checkout
+│   │   ├── [  39]  post-commit
+│   │   ├── [  39]  post-merge
+│   │   ├── [  39]  post-rewrite
+│   │   ├── [  39]  pre-applypatch
+│   │   ├── [  39]  pre-auto-gc
+│   │   ├── [  39]  pre-commit
+│   │   ├── [  39]  pre-merge-commit
+│   │   ├── [  39]  pre-push
+│   │   ├── [  39]  pre-rebase
+│   │   └── [  39]  prepare-commit-msg
+│   └── [  63]  pre-push
+├── [ 642]  FULL_PROJECT_DUMP.txt
+├── [1.4K]  README.md
 ├── [4.0K]  app
 │   ├── [4.0K]  about
 │   │   ├── [2.1K]  About.module.css
@@ -37,62 +63,36 @@ PROJECT STRUCTURE
 │   │   └── [1.9K]  page.tsx
 │   ├── [1.1K]  globals.css
 │   ├── [4.0K]  home
-│   │   ├── [2.9K]  data.ts
 │   │   ├── [6.3K]  Home.module.css
-│   │   └── [3.6K]  Homepage.tsx
+│   │   ├── [3.6K]  Homepage.tsx
+│   │   └── [2.9K]  data.ts
 │   ├── [1.0K]  layout.tsx
 │   ├── [   0]  page.module.css
 │   ├── [  98]  page.tsx
 │   ├── [4.0K]  portfolio
+│   │   ├── [ 924]  Portfolio.module.css
 │   │   ├── [ 642]  data.ts
-│   │   ├── [ 913]  page.tsx
-│   │   └── [ 924]  Portfolio.module.css
+│   │   └── [ 913]  page.tsx
 │   ├── [4.0K]  services
+│   │   ├── [2.5K]  Services.module.css
 │   │   ├── [ 378]  data.ts
-│   │   ├── [2.7K]  page.tsx
-│   │   └── [2.5K]  Services.module.css
+│   │   └── [2.7K]  page.tsx
 │   └── [ 581]  sitemap.ts
 ├── [4.0K]  components
 │   ├── [4.0K]  Footer
 │   │   ├── [ 394]  Footer.module.css
 │   │   └── [ 427]  Footer.tsx
 │   └── [4.0K]  Navbar
-│       ├── [2.1K]  Navbar.module.css
-│       └── [1.5K]  Navbar.tsx
+│       ├── [3.5K]  Navbar.module.css
+│       └── [3.0K]  Navbar.tsx
 ├── [ 465]  eslint.config.mjs
-├── [ 642]  FULL_PROJECT_DUMP.txt
-├── [4.0K]  .github
-│   └── [4.0K]  workflows
-│       └── [ 657]  deploy.yml
-├── [ 480]  .gitignore
-├── [4.0K]  .husky
-│   ├── [4.0K]  _
-│   │   ├── [  39]  applypatch-msg
-│   │   ├── [  39]  commit-msg
-│   │   ├── [   1]  .gitignore
-│   │   ├── [ 551]  h
-│   │   ├── [ 160]  husky.sh
-│   │   ├── [  39]  post-applypatch
-│   │   ├── [  39]  post-checkout
-│   │   ├── [  39]  post-commit
-│   │   ├── [  39]  post-merge
-│   │   ├── [  39]  post-rewrite
-│   │   ├── [  39]  pre-applypatch
-│   │   ├── [  39]  pre-auto-gc
-│   │   ├── [  39]  pre-commit
-│   │   ├── [  39]  pre-merge-commit
-│   │   ├── [  39]  prepare-commit-msg
-│   │   ├── [  39]  pre-push
-│   │   └── [  39]  pre-rebase
-│   └── [  63]  pre-push
-├── [ 212]  next.config.js
 ├── [ 228]  next-env.d.ts
-├── [ 597]  package.json
+├── [ 212]  next.config.js
 ├── [184K]  package-lock.json
+├── [ 597]  package.json
 ├── [4.0K]  public
 │   ├── [  94]  robots.txt
 │   └── [1.1K]  sitemap.xml
-├── [1.4K]  README.md
 ├── [4.0K]  scripts
 │   └── [1.5K]  generate-dump.sh
 └── [ 713]  tsconfig.json
@@ -108,21 +108,25 @@ PROJECT FILE CONTENTS
 =================================================
 FILE: ./components/Navbar/Navbar.module.css
 =================================================
+/* =======================================================
+   WRAPPER
+======================================================= */
+
 .wrapper {
   position: sticky;
-  top: 0; /* Stick to very top */
+  top: 0;
   z-index: 1000;
-  padding: 20px 0 0 0; /* visual breathing space */
+  padding: 18px 0 0 0;
   display: flex;
   justify-content: center;
 }
 
 .navbar {
   width: 92%;
-  max-width: 1100px;
-  padding: 14px 30px;
-  border-radius: 50px;
-  backdrop-filter: blur(18px);
+  max-width: 1150px;
+  padding: 16px 32px;
+  border-radius: 60px;
+  backdrop-filter: blur(20px);
   background: var(--glass-bg);
   border: 1px solid var(--border-soft);
 
@@ -132,19 +136,69 @@ FILE: ./components/Navbar/Navbar.module.css
   position: relative;
 }
 
+/* =======================================================
+   LOGO SYSTEM
+======================================================= */
+
 .logo {
-  font-weight: 600;
-  font-size: 1rem;
-  color: var(--accent);
   text-decoration: none;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
 }
 
-/* Desktop Links */
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.logoCircle {
+  color: var(--accent);
+  stroke-dasharray: 113;
+  stroke-dashoffset: 113;
+  transition: stroke-dashoffset 1.2s ease;
+}
+
+.draw {
+  stroke-dashoffset: 0;
+}
+
+.logoLetter {
+  position: absolute;
+  left: 13px;
+  font-weight: 600;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 1s ease 0.5s;
+}
+
+.logoText {
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  opacity: 0;
+  transition: opacity 1s ease 0.8s;
+}
+
+.fadeIn {
+  opacity: 1;
+}
+
+.logo:hover {
+  transform: translateY(-2px);
+  transition: 0.3s ease;
+}
+
+/* =======================================================
+   DESKTOP LINKS
+======================================================= */
 
 .links {
   display: flex;
-  gap: 32px;
-  position: relative;
+  gap: 36px;
+  align-items: center;
 }
 
 .link {
@@ -155,7 +209,6 @@ FILE: ./components/Navbar/Navbar.module.css
   transition: 0.3s ease;
 }
 
-/* Animated underline */
 .link::after {
   content: "";
   position: absolute;
@@ -171,24 +224,13 @@ FILE: ./components/Navbar/Navbar.module.css
   width: 100%;
 }
 
-/* Active indicator */
 .active {
   color: var(--accent);
 }
 
-.active::before {
-  content: "";
-  position: absolute;
-  bottom: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 5px;
-  height: 5px;
-  background: var(--accent);
-  border-radius: 50%;
-}
-
-/* Hamburger Button */
+/* =======================================================
+   HAMBURGER
+======================================================= */
 
 .menuBtn {
   display: none;
@@ -200,16 +242,14 @@ FILE: ./components/Navbar/Navbar.module.css
 }
 
 .menuBtn span {
-  width: 22px;
+  width: 24px;
   height: 2px;
   background: var(--text-primary);
   transition: 0.3s ease;
 }
 
-/* Animate to Cross */
-
 .menuOpen span:nth-child(1) {
-  transform: rotate(45deg) translateY(6px);
+  transform: rotate(45deg) translateY(7px);
 }
 
 .menuOpen span:nth-child(2) {
@@ -217,32 +257,64 @@ FILE: ./components/Navbar/Navbar.module.css
 }
 
 .menuOpen span:nth-child(3) {
-  transform: rotate(-45deg) translateY(-6px);
+  transform: rotate(-45deg) translateY(-7px);
 }
 
-/* Mobile */
+/* =======================================================
+   OVERLAY
+======================================================= */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s ease;
+  z-index: 900;
+}
+
+.overlayShow {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* =======================================================
+   MOBILE
+======================================================= */
 
 @media (max-width: 768px) {
+
   .menuBtn {
     display: flex;
   }
 
   .links {
-    position: absolute;
-    top: 70px;
-    right: 0;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 75%;
+    max-width: 320px;
+
     flex-direction: column;
-    gap: 22px;
-    padding: 30px 40px;
+    justify-content: center;
+    gap: 32px;
+
     background: var(--bg-secondary);
-    border-radius: 20px;
-    border: 1px solid var(--border-soft);
-    transform: translateX(120%);
-    transition: 0.4s ease;
+    border-left: 1px solid var(--border-soft);
+
+    transition: right 0.35s ease;
+    z-index: 1001;
   }
 
   .open {
-    transform: translateX(0);
+    right: 0;
+  }
+
+  .link {
+    font-size: 1rem;
   }
 }
 
@@ -254,11 +326,12 @@ FILE: ./components/Navbar/Navbar.tsx
 import styles from "./Navbar.module.css";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [animateLogo, setAnimateLogo] = useState(false);
 
   const links = [
     { name: "About", path: "/about" },
@@ -270,45 +343,100 @@ export default function Navbar() {
 
   const handleClose = () => setOpen(false);
 
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "auto";
+  }, [open]);
+
+  // Trigger logo animation once on mount
+  useEffect(() => {
+    setAnimateLogo(true);
+  }, []);
+
   return (
-    <nav className={styles.wrapper}>
-      <div className={styles.navbar}>
-        <Link href="/" className={styles.logo} onClick={handleClose}>
-          Kamlesh
-        </Link>
+    <>
+      <nav className={styles.wrapper}>
+        <div className={styles.navbar}>
+          <Link href="/" className={styles.logo} onClick={handleClose}>
+            <div className={styles.logoContainer}>
+              {/* Monogram Circle */}
+              <svg
+                className={`${styles.logoCircle} ${
+                  animateLogo ? styles.draw : ""
+                }`}
+                width="40"
+                height="40"
+                viewBox="0 0 40 40"
+              >
+                <circle
+                  cx="20"
+                  cy="20"
+                  r="18"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  fill="none"
+                />
+              </svg>
 
-        <div
-          className={`${styles.links} ${
-            open ? styles.open : ""
-          }`}
-        >
-          {links.map((link) => (
-            <Link
-              key={link.path}
-              href={link.path}
-              onClick={handleClose}
-              className={`${styles.link} ${
-                pathname === link.path ? styles.active : ""
-              }`}
-            >
-              {link.name}
-            </Link>
-          ))}
+              {/* Letter K */}
+              <span
+                className={`${styles.logoLetter} ${
+                  animateLogo ? styles.fadeIn : ""
+                }`}
+              >
+                K
+              </span>
+
+              {/* Wordmark */}
+              <span
+                className={`${styles.logoText} ${
+                  animateLogo ? styles.fadeIn : ""
+                }`}
+              >
+                Kamlesh
+              </span>
+            </div>
+          </Link>
+
+          <div
+            className={`${styles.links} ${
+              open ? styles.open : ""
+            }`}
+          >
+            {links.map((link) => (
+              <Link
+                key={link.path}
+                href={link.path}
+                onClick={handleClose}
+                className={`${styles.link} ${
+                  pathname === link.path ? styles.active : ""
+                }`}
+              >
+                {link.name}
+              </Link>
+            ))}
+          </div>
+
+          <button
+            className={`${styles.menuBtn} ${
+              open ? styles.menuOpen : ""
+            }`}
+            onClick={() => setOpen(!open)}
+            aria-label="Toggle Menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
+      </nav>
 
-        <button
-          className={`${styles.menuBtn} ${
-            open ? styles.menuOpen : ""
-          }`}
-          onClick={() => setOpen(!open)}
-          aria-label="Toggle Menu"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
-    </nav>
+      <div
+        className={`${styles.overlay} ${
+          open ? styles.overlayShow : ""
+        }`}
+        onClick={handleClose}
+      />
+    </>
   );
 }
 
