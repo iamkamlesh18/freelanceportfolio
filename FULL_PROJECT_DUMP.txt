@@ -1,6 +1,57 @@
 
 
 =================================================
+FILE: ./components/WhatsAppButton/WhatsAppButton.tsx
+=================================================
+"use client";
+
+import styles from "./WhatsAppButton.module.css";
+
+export default function WhatsAppButton() {
+  return (
+    <a
+      href="https://wa.me/917770000347?text=Hi%20Kamlesh,%20I%20want%20to%20discuss%20a%20project."
+      target="_blank"
+      rel="noopener noreferrer"
+      className={styles.button}
+      aria-label="Chat on WhatsApp"
+    >
+      <svg
+        width="26"
+        height="26"
+        viewBox="0 0 24 24"
+        fill="white"
+      >
+        <path d="M20.52 3.48A11.79 11.79 0 0012.05 0C5.48 0 .12 5.36.12 11.93c0 2.1.55 4.16 1.6 5.97L0 24l6.25-1.63a11.87 11.87 0 005.8 1.48h.01c6.57 0 11.93-5.36 11.93-11.93 0-3.18-1.24-6.17-3.47-8.44z" />
+      </svg>
+    </a>
+  );
+}
+
+=================================================
+FILE: ./components/WhatsAppButton/WhatsAppButton.module.css
+=================================================
+.button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 58px;
+  height: 58px;
+  background: linear-gradient(135deg, #25D366, #1ebe5d);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.4);
+  z-index: 1000;
+  transition: 0.3s ease;
+}
+
+.button:hover {
+  transform: translateY(-4px) scale(1.05);
+}
+
+=================================================
 FILE: ./components/SectionDivider/SectionDivider.module.css
 =================================================
 .divider {
@@ -190,17 +241,18 @@ import { useState, useEffect } from "react";
 
 export default function Navbar() {
   const pathname = usePathname();
-  const [open, setOpen] = useState(false);
   const [dark, setDark] = useState(true);
 
   useEffect(() => {
-    document.body.dataset.theme = dark ? "dark" : "light";
+    document.documentElement.dataset.theme = dark ? "dark" : "light";
   }, [dark]);
 
-  const navLinks = [
+  const links = [
     { name: "About", path: "/about" },
     { name: "Services", path: "/services" },
     { name: "Portfolio", path: "/portfolio" },
+    { name: "Blog", path: "/blog" },
+    { name: "Contact", path: "/contact" },
   ];
 
   return (
@@ -210,43 +262,26 @@ export default function Navbar() {
           Kamlesh
         </Link>
 
-        <div className={`${styles.links} ${open ? styles.open : ""}`}>
-          {navLinks.map((link) => {
-            const isActive = pathname === link.path;
-            return (
-              <Link
-                key={link.path}
-                href={link.path}
-                className={`${styles.link} ${
-                  isActive ? styles.active : ""
-                }`}
-                onClick={() => setOpen(false)}
-              >
-                {link.name}
-              </Link>
-            );
-          })}
+        <div className={styles.links}>
+          {links.map((link) => (
+            <Link
+              key={link.path}
+              href={link.path}
+              className={`${styles.link} ${
+                pathname === link.path ? styles.active : ""
+              }`}
+            >
+              {link.name}
+            </Link>
+          ))}
         </div>
 
-        <div className={styles.right}>
-          <button
-            className={styles.themeToggle}
-            onClick={() => setDark(!dark)}
-          >
-            {dark ? "☀" : "🌙"}
-          </button>
-
-          <div
-            className={`${styles.menuBtn} ${
-              open ? styles.menuOpen : ""
-            }`}
-            onClick={() => setOpen(!open)}
-          >
-            <span />
-            <span />
-            <span />
-          </div>
-        </div>
+        <button
+          className={styles.themeToggle}
+          onClick={() => setDark(!dark)}
+        >
+          {dark ? "☀" : "🌙"}
+        </button>
       </div>
     </nav>
   );
@@ -413,35 +448,31 @@ FILE: ./components/Background/Background.module.css
 =================================================
 .blob1,
 .blob2 {
-  position: fixed;          /* MUST be fixed */
-  width: 500px;
-  height: 500px;
+  position: fixed;
+  width: 600px;
+  height: 600px;
   border-radius: 50%;
-  filter: blur(160px);
-  animation: float 12s ease-in-out infinite alternate;
-  z-index: -1;              /* Behind content */
+  filter: blur(180px);
+  animation: float 14s ease-in-out infinite alternate;
   pointer-events: none;
+  z-index: -1;
 }
 
-.blob1,
+.blob1 {
+  background: rgba(138, 43, 226, 0.35);
+  top: -200px;
+  left: -200px;
+}
+
 .blob2 {
-  position: fixed;
-  width: 500px;
-  height: 500px;
-  border-radius: 50%;
-  filter: blur(160px);
-  animation: float 12s ease-in-out infinite alternate;
-  z-index: 0;              /* NOT -1 */
-  pointer-events: none;
+  background: rgba(0, 150, 255, 0.35);
+  bottom: -200px;
+  right: -200px;
 }
 
 @keyframes float {
-  from {
-    transform: translateY(0px);
-  }
-  to {
-    transform: translateY(60px);
-  }
+  from { transform: translateY(0px); }
+  to   { transform: translateY(80px); }
 }
 
 =================================================
@@ -595,16 +626,79 @@ export function useReveal() {
 }
 
 =================================================
+FILE: ./data/portfolio.ts
+=================================================
+
+
+=================================================
+FILE: ./data/blogs.ts
+=================================================
+export const blogs = [
+  {
+    slug: "digital-marketing-strategy",
+    title: "Digital Marketing Strategy in 2026",
+    excerpt: "Modern performance-driven strategy explained.",
+    content:
+      "Full detailed article content here...",
+  },
+  {
+    slug: "seo-fundamentals",
+    title: "SEO Fundamentals That Still Work",
+    excerpt: "Technical SEO principles that rank.",
+    content:
+      "Full detailed article content here...",
+  },
+];
+
+=================================================
+FILE: ./data/services.ts
+=================================================
+
+
+=================================================
 FILE: ./app/layout.tsx
 =================================================
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
-import Background from "@/components/Background/Background";
+import WhatsAppButton from "@/components/WhatsAppButton/WhatsAppButton";
+import type { Metadata } from "next";
 
-export const metadata = {
-  title: "Kamlesh | Portfolio",
-  description: "Modular Next.js Portfolio with Clean Architecture",
+const siteUrl = "https://iamkamlesh18.github.io/freelanceportfolio";
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Kamlesh | Developer & Architect",
+    template: "%s | Kamlesh",
+  },
+  description:
+    "Portfolio of Kamlesh — Developer, Architect, and Digital Systems Builder.",
+  keywords: [
+    "Kamlesh",
+    "Web Developer",
+    "Frontend Architect",
+    "Digital Marketing",
+    "Salesforce Developer",
+  ],
+  openGraph: {
+    title: "Kamlesh Portfolio",
+    description:
+      "Modular, scalable systems built with performance and clarity.",
+    url: siteUrl,
+    siteName: "Kamlesh Portfolio",
+    images: [
+      {
+        url: `${siteUrl}/og-image.png`,
+        width: 1200,
+        height: 630,
+      },
+    ],
+    type: "website",
+  },
+  alternates: {
+    canonical: siteUrl,
+  },
 };
 
 export default function RootLayout({
@@ -612,15 +706,32 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Kamlesh",
+    url: siteUrl,
+    sameAs: [
+      "https://github.com/iamkamlesh18",
+      "https://linkedin.com/in/iamkamlesh18",
+    ],
+    jobTitle: "Developer & Architect",
+  };
+
   return (
     <html lang="en">
       <body>
-        <Background />
-        <div style={{ position: "relative", zIndex: 1 }}>
-          <Navbar />
-          {children}
-          <Footer />
-        </div>
+        <Navbar />
+        {children}
+        <Footer />
+        <WhatsAppButton />
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLd),
+          }}
+        />
       </body>
     </html>
   );
@@ -696,19 +807,19 @@ export default function Portfolio() {
 =================================================
 FILE: ./app/about/About.module.css
 =================================================
-.container {
-  min-height: 80vh;
-  padding: 80px 10%;
+.card {
+  padding: 60px;
+  border-radius: 16px;
+  background: var(--glass-bg);
+  border: 1px solid var(--border-soft);
 }
 
-.container h1 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
+.card h1 {
+  margin-bottom: 24px;
 }
 
-.container p {
+.card p {
   color: var(--text-secondary);
-  line-height: 1.6;
   max-width: 700px;
 }
 
@@ -726,14 +837,101 @@ FILE: ./app/about/page.tsx
 =================================================
 import styles from "./About.module.css";
 import { aboutData } from "./data";
+import type { Metadata } from "next";
+
+const siteUrl =
+  "https://iamkamlesh18.github.io/freelanceportfolio";
+
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "Learn more about Kamlesh — Developer, Architect, and Digital Systems Builder.",
+  alternates: {
+    canonical: `${siteUrl}/about/`,
+  },
+  openGraph: {
+    title: "About Kamlesh",
+    description:
+      "Developer & Architect building modular scalable systems.",
+    url: `${siteUrl}/about/`,
+    type: "article",
+  },
+};
 
 export default function About() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: "About Kamlesh",
+    url: `${siteUrl}/about/`,
+    mainEntity: {
+      "@type": "Person",
+      name: "Kamlesh",
+      jobTitle: "Developer & Architect",
+      email: "patilkamlesh1811@gmail.com",
+      telephone: "+91-7770000347",
+      sameAs: [
+        "https://github.com/iamkamlesh18",
+        "https://linkedin.com/in/iamkamlesh18",
+        "https://iamkamlesh18.github.io/iamkamlesh18/",
+        "https://iamkamlesh18.github.io/my-portfolio/",
+      ],
+    },
+  };
+
   return (
-    <main className={styles.container}>
-      <h1>{aboutData.heading}</h1>
-      <p>{aboutData.content}</p>
-    </main>
+    <>
+      <main className="section">
+        <div className={styles.card}>
+          <h1>{aboutData.heading}</h1>
+          <p>{aboutData.content}</p>
+        </div>
+      </main>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd),
+        }}
+      />
+    </>
   );
+}
+
+=================================================
+FILE: ./app/sitemap.ts
+=================================================
+import { MetadataRoute } from "next";
+
+const siteUrl = "https://iamkamlesh18.github.io/freelanceportfolio";
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  return [
+    {
+      url: `${siteUrl}/`,
+      priority: 1,
+    },
+    {
+      url: `${siteUrl}/about/`,
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/services/`,
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/portfolio/`,
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/blog/`,
+      priority: 0.7,
+    },
+    {
+      url: `${siteUrl}/contact/`,
+      priority: 0.8,
+    },
+  ];
 }
 
 =================================================
@@ -839,6 +1037,145 @@ FILE: ./app/page.module.css
   to {
     transform: translateY(40px);
   }
+}
+
+=================================================
+FILE: ./app/blog/Blog.module.css
+=================================================
+.grid {
+  margin-top: 60px;
+  display: grid;
+  gap: 40px;
+}
+
+.card {
+  padding: 40px;
+  border-radius: 16px;
+  background: var(--glass-bg);
+  border: 1px solid var(--border-soft);
+  text-decoration: none;
+  color: inherit;
+  transition: 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+}
+
+=================================================
+FILE: ./app/blog/page.tsx
+=================================================
+import styles from "./Blog.module.css";
+import Link from "next/link";
+import { blogs } from "@/data/blogs";
+
+export const metadata = {
+  title: "Blog",
+  description: "Insights on Digital Marketing & Architecture.",
+};
+
+export default function Blog() {
+  return (
+    <section className="section">
+      <h1>Blog</h1>
+
+      <div className={styles.grid}>
+        {blogs.map((post) => (
+          <Link
+            key={post.slug}
+            href={`/blog/${post.slug}`}
+            className={styles.card}
+          >
+            <h2>{post.title}</h2>
+            <p>{post.excerpt}</p>
+          </Link>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+=================================================
+FILE: ./app/blog/[slug]/page.tsx
+=================================================
+import { blogs } from "@/data/blogs";
+import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+
+const siteUrl =
+  "https://iamkamlesh18.github.io/freelanceportfolio";
+
+/* 🔥 REQUIRED FOR STATIC EXPORT */
+export function generateStaticParams() {
+  return blogs.map((blog) => ({
+    slug: blog.slug,
+  }));
+}
+
+/* 🔥 SEO PER BLOG */
+export function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Metadata {
+  const post = blogs.find((b) => b.slug === params.slug);
+
+  if (!post) {
+    return {};
+  }
+
+  return {
+    title: post.title,
+    description: post.excerpt,
+    alternates: {
+      canonical: `${siteUrl}/blog/${post.slug}/`,
+    },
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      url: `${siteUrl}/blog/${post.slug}/`,
+      type: "article",
+    },
+  };
+}
+
+export default function BlogDetail({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const post = blogs.find((b) => b.slug === params.slug);
+
+  if (!post) return notFound();
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.excerpt,
+    author: {
+      "@type": "Person",
+      name: "Kamlesh",
+    },
+    url: `${siteUrl}/blog/${post.slug}/`,
+  };
+
+  return (
+    <>
+      <section className="section">
+        <h1>{post.title}</h1>
+        <p style={{ marginTop: "30px" }}>{post.content}</p>
+      </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd),
+        }}
+      />
+    </>
+  );
 }
 
 =================================================
@@ -973,22 +1310,6 @@ FILE: ./app/globals.css
   margin: 0;
 }
 
-html,
-body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif; 
-  position: relative;
-  z-index: 1;
-  background: linear-gradient(
-    180deg,
-    #0b0b0b 0%,
-    #0e0e12 100%
-  );
-
-  color: var(--text-primary);
-  scroll-behavior: smooth;
-}
-
-/* Design Tokens */
 :root {
   --bg-primary: #0b0b0b;
   --bg-secondary: #121212;
@@ -1003,16 +1324,41 @@ body {
   --border-soft: rgba(255, 255, 255, 0.08);
 }
 
-/* Subtle Luxury Glow */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background:
-    radial-gradient(circle at 20% 30%, rgba(245,176,65,0.12), transparent 45%),
-    radial-gradient(circle at 80% 70%, rgba(245,176,65,0.08), transparent 50%);
-  z-index: -1;
-  pointer-events: none;
+[data-theme="light"] {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f5;
+  --glass-bg: rgba(0, 0, 0, 0.04);
+
+  --text-primary: #111111;
+  --text-secondary: rgba(0, 0, 0, 0.7);
+  --border-soft: rgba(0, 0, 0, 0.1);
+}
+
+html,
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  scroll-behavior: smooth;
+}
+
+.section {
+  padding: 120px 10%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 4vw, 3.2rem);
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: clamp(1.8rem, 3vw, 2.2rem);
+}
+
+p {
+  line-height: 1.7;
 }
 
 =================================================
@@ -1070,40 +1416,65 @@ export const contactData = {
 =================================================
 FILE: ./app/contact/Contact.module.css
 =================================================
-.container {
-  min-height: 80vh;
-  padding: 80px 10%;
+.card {
+  margin-top: 40px;
+  padding: 40px;
+  border-radius: 16px;
+  background: var(--glass-bg);
+  border: 1px solid var(--border-soft);
 }
 
-.container h1 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
+.links {
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
-.container p {
-  color: var(--text-secondary);
-  margin-bottom: 20px;
-}
-
-.container a {
-  color: var(--accent);
+.links a {
   text-decoration: none;
+  color: var(--accent);
+  transition: 0.3s ease;
+}
+
+.links a:hover {
+  transform: translateY(-2px);
 }
 
 =================================================
 FILE: ./app/contact/page.tsx
 =================================================
 import styles from "./Contact.module.css";
-import { contactData } from "./data";
+
+export const metadata = {
+  title: "Contact",
+  description: "Get in touch with Kamlesh.",
+};
 
 export default function Contact() {
   return (
-    <main className={styles.container}>
-      <h1>{contactData.heading}</h1>
-      <p>{contactData.message}</p>
-      <a href={`mailto:${contactData.email}`}>
-        {contactData.email}
-      </a>
-    </main>
+    <section className="section">
+      <h1>Contact Me</h1>
+
+      <div className={styles.card}>
+        <p>Email: patilkamlesh1811@gmail.com</p>
+        <p>Phone: +91-7770000347</p>
+
+        <div className={styles.links}>
+          <a href="https://linkedin.com/in/iamkamlesh18" target="_blank">
+            LinkedIn
+          </a>
+          <a href="https://github.com/iamkamlesh18" target="_blank">
+            GitHub
+          </a>
+          <a href="https://iamkamlesh18.github.io/iamkamlesh18/" target="_blank">
+            CV Website
+          </a>
+          <a href="https://iamkamlesh18.github.io/my-portfolio/" target="_blank">
+            Salesforce Portfolio
+          </a>
+        </div>
+      </div>
+    </section>
   );
 }
