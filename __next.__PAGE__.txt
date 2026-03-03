@@ -1,6 +1,6 @@
 1:"$Sreact.fragment"
-2:I[97367,["/freelanceportfolio/_next/static/chunks/ff1a16fafef87110.js","/freelanceportfolio/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
+2:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
 3:"$Sreact.suspense"
-:HL["/freelanceportfolio/_next/static/chunks/6563af9d7a224817.css","style"]
-0:{"buildId":"EiILbWa-t57w8Ezc4OgiR","rsc":["$","$1","c",{"children":[["$","main",null,{"className":"page-module__E0kJGG__container","children":[["$","h1",null,{"children":"Hi, I'm Kamlesh"}],["$","h2",null,{"children":"Building scalable digital experiences."}],["$","p",null,{"children":"I architect modular, maintainable, and production-ready web systems."}]]}],[["$","link","0",{"rel":"stylesheet","href":"/freelanceportfolio/_next/static/chunks/6563af9d7a224817.css","precedence":"next"}]],["$","$L2",null,{"children":["$","$3",null,{"name":"Next.MetadataOutlet","children":"$@4"}]}]]}],"loading":null,"isPartial":false}
+:HL["/_next/static/chunks/6563af9d7a224817.css","style"]
+0:{"buildId":"S2N-crEWRKGNSOh_cR_RI","rsc":["$","$1","c",{"children":[["$","main",null,{"className":"page-module__E0kJGG__container","children":[["$","h1",null,{"children":"Hi, I'm Kamlesh"}],["$","h2",null,{"children":"Building scalable digital experiences."}],["$","p",null,{"children":"I architect modular, maintainable, and production-ready web systems."}]]}],[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/6563af9d7a224817.css","precedence":"next"}]],["$","$L2",null,{"children":["$","$3",null,{"name":"Next.MetadataOutlet","children":"$@4"}]}]]}],"loading":null,"isPartial":false}
 4:null

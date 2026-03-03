@@ -1,6 +1,6 @@
 1:"$Sreact.fragment"
-2:I[97367,["/freelanceportfolio/_next/static/chunks/ff1a16fafef87110.js","/freelanceportfolio/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
+2:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
 3:"$Sreact.suspense"
-:HL["/freelanceportfolio/_next/static/chunks/1c411db9592d9bfa.css","style"]
-0:{"buildId":"EiILbWa-t57w8Ezc4OgiR","rsc":["$","$1","c",{"children":[["$","main",null,{"className":"About-module__hVONLq__container","children":[["$","h1",null,{"children":"About Me"}],["$","p",null,{"children":"I specialize in building modular front-end systems using modern architecture principles and clean separation of concerns."}]]}],[["$","link","0",{"rel":"stylesheet","href":"/freelanceportfolio/_next/static/chunks/1c411db9592d9bfa.css","precedence":"next"}]],["$","$L2",null,{"children":["$","$3",null,{"name":"Next.MetadataOutlet","children":"$@4"}]}]]}],"loading":null,"isPartial":false}
+:HL["/_next/static/chunks/1c411db9592d9bfa.css","style"]
+0:{"buildId":"S2N-crEWRKGNSOh_cR_RI","rsc":["$","$1","c",{"children":[["$","main",null,{"className":"About-module__hVONLq__container","children":[["$","h1",null,{"children":"About Me"}],["$","p",null,{"children":"I specialize in building modular front-end systems using modern architecture principles and clean separation of concerns."}]]}],[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/1c411db9592d9bfa.css","precedence":"next"}]],["$","$L2",null,{"children":["$","$3",null,{"name":"Next.MetadataOutlet","children":"$@4"}]}]]}],"loading":null,"isPartial":false}
 4:null
