@@ -1,5 +1,5 @@
 .card {
-  padding: 30px;
+  padding: 22px;
   background: var(--glass-bg);
   border-radius: 12px;
   border: 1px solid var(--border-soft);
@@ -7,10 +7,11 @@
 }
 
 .card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-4px);
   border-color: var(--accent);
 }
 
 .card h2 {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+  font-size: 1.1rem;
 }

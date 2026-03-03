@@ -1,15 +1,12 @@
 .card {
-  padding: 60px;
-  border-radius: 16px;
+  padding: 40px;
+  border-radius: 14px;
   background: var(--glass-bg);
   border: 1px solid var(--border-soft);
+  max-width: 750px;
+  margin: 0 auto;
 }
 
 .card h1 {
-  margin-bottom: 24px;
-}
-
-.card p {
-  color: var(--text-secondary);
-  max-width: 700px;
+  margin-bottom: 18px;
 }
