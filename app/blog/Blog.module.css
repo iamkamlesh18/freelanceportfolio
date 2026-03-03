@@ -1,3 +1,9 @@
+.wrapper {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
 .grid {
   margin-top: 40px;
   display: grid;
@@ -5,14 +11,21 @@
 }
 
 .card {
-  padding: 24px;
+  padding: 28px;
   border-radius: 14px;
   background: var(--glass-bg);
   border: 1px solid var(--border-soft);
+  text-decoration: none;
+  color: inherit;
   transition: 0.3s ease;
 }
 
 .card:hover {
   transform: translateY(-4px);
   border-color: var(--accent);
+}
+
+.card h2 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
 }

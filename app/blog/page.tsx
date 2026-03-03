@@ -1,28 +1,28 @@
 import styles from "./Blog.module.css";
 import Link from "next/link";
-import { blogs } from "@/data/blogs";
 
 export const metadata = {
   title: "Blog",
-  description: "Insights on Digital Marketing & Architecture.",
+  description: "Insights on architecture, SEO, and digital systems.",
 };
 
 export default function Blog() {
   return (
     <section className="section">
-      <h1>Blog</h1>
+      <div className={styles.wrapper}>
+        <h1>Blog</h1>
 
-      <div className={styles.grid}>
-        {blogs.map((post) => (
-          <Link
-            key={post.slug}
-            href={`/blog/${post.slug}`}
-            className={styles.card}
-          >
-            <h2>{post.title}</h2>
-            <p>{post.excerpt}</p>
+        <div className={styles.grid}>
+          <Link href="/blog/digital-marketing" className={styles.card}>
+            <h2>Digital Marketing Strategy in 2026</h2>
+            <p>Modern performance-driven strategy explained.</p>
           </Link>
-        ))}
+
+          <Link href="/blog/seo-fundamentals" className={styles.card}>
+            <h2>SEO Fundamentals That Still Work</h2>
+            <p>Technical SEO principles that rank.</p>
+          </Link>
+        </div>
       </div>
     </section>
   );
