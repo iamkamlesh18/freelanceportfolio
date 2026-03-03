@@ -1,4 +1,20 @@
 =================================================
+FULL PROJECT DUMP (AUTO-GENERATED)
+=================================================
+
+Purpose:
+- This file provides a complete snapshot of the project.
+- Includes project structure (tree view).
+- Includes all relevant source file contents.
+- Excludes build folders and node_modules.
+
+Why this exists:
+- For quick sharing and AI/code review analysis.
+- For architecture audits.
+- For backup visibility in a single file.
+- Automatically updated on every git push via Husky.
+
+=================================================
 PROJECT STRUCTURE
 =================================================
 
@@ -27,7 +43,7 @@ PROJECT STRUCTURE
 │   │   ├── [  39]  pre-rebase
 │   │   └── [  39]  prepare-commit-msg
 │   └── [  63]  pre-push
-├── [ 119]  FULL_PROJECT_DUMP.txt
+├── [ 642]  FULL_PROJECT_DUMP.txt
 ├── [1.4K]  README.md
 ├── [4.0K]  app
 │   ├── [4.0K]  about
@@ -74,7 +90,7 @@ PROJECT STRUCTURE
 │   ├── [  94]  robots.txt
 │   └── [1.1K]  sitemap.xml
 ├── [4.0K]  scripts
-│   └── [ 889]  generate-dump.sh
+│   └── [1.5K]  generate-dump.sh
 └── [ 713]  tsconfig.json
 
 18 directories, 56 files

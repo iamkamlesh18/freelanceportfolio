@@ -98,3 +98,220 @@
     transform: translateY(40px);
   }
 }
+
+/* ===== SHAPES SECTION ===== */
+
+.shapesSection {
+  padding: 120px 6%;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.snakeWrapper {
+  width: 100%;
+  margin-bottom: 60px;
+}
+
+.snake {
+  width: 100%;
+  height: 150px;
+}
+
+.snakePath {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 4;
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+  animation: drawSnake 3s ease forwards;
+}
+
+@keyframes drawSnake {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Reveal Text Block */
+
+.revealBlock {
+  max-width: 700px;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: reveal 1.2s ease forwards;
+  animation-delay: 1.5s;
+}
+
+@keyframes reveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+/* ===== VALUE SECTION ===== */
+
+.valueSection {
+  padding: 120px 6%;
+  text-align: center;
+}
+
+.valueTitle {
+  margin-bottom: 60px;
+}
+
+.valueGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+}
+
+.valueCard {
+  padding: 30px;
+  border-radius: 18px;
+  background: var(--glass-bg);
+  border: 1px solid var(--border-soft);
+  transition: 0.3s ease;
+}
+
+.valueCard:hover {
+  transform: translateY(-8px);
+  border-color: var(--accent);
+}
+
+.valueCard h3 {
+  margin-bottom: 12px;
+}
+
+.valueCard p {
+  font-size: 0.9rem;
+}
+
+
+
+/* ===== SKILLS SECTION ===== */
+
+.skillsSection {
+  position: relative;
+  padding: 140px 6%;
+  text-align: center;
+  overflow: hidden;
+}
+
+.skillsTitle {
+  margin-bottom: 80px;
+}
+
+/* Background Shapes */
+
+.skillsBackground {
+  position: absolute;
+  top: -200px;
+  left: -200px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--accent-soft), transparent 70%);
+  opacity: 0.15;
+  filter: blur(120px);
+  animation: float 10s ease-in-out infinite alternate;
+  z-index: 0;
+}
+
+@keyframes float {
+  from { transform: translateY(0px); }
+  to { transform: translateY(60px); }
+}
+
+.skillsGrid {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+  display: grid;
+  gap: 40px;
+}
+
+/* Skill Card */
+
+.skillCard {
+  text-align: left;
+}
+
+.skillHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+
+.progressBar {
+  width: 100%;
+  height: 8px;
+  background: var(--border-soft);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--accent),
+    var(--accent-soft)
+  );
+  width: 0;
+  animation: fillBar 1.8s ease forwards;
+}
+
+@keyframes fillBar {
+  from { width: 0; }
+}
+
+
+
+/* ===== FLOW DIVIDER SECTION ===== */
+
+.flowSection {
+  position: relative;
+  padding: 120px 0;
+  text-align: center;
+  overflow: hidden;
+}
+
+.wave {
+  width: 100%;
+  height: 120px;
+}
+
+.wavePath {
+  fill: var(--glass-bg);
+  opacity: 0.4;
+  animation: waveMove 6s ease-in-out infinite alternate;
+}
+
+@keyframes waveMove {
+  from {
+    transform: translateX(-20px);
+  }
+  to {
+    transform: translateX(20px);
+  }
+}
+
+.flowContent {
+  max-width: 700px;
+  margin: 40px auto 0;
+  padding: 0 6%;
+}
+
+.flowContent h2 {
+  margin-bottom: 16px;
+}
+
+.flowContent p {
+  font-size: 0.95rem;
+}
