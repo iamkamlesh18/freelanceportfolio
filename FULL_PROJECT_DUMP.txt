@@ -498,7 +498,7 @@ export default function ServiceCard({ title, description }: Props) {
 FILE: ./components/ServiceCard/ServiceCard.module.css
 =================================================
 .card {
-  padding: 30px;
+  padding: 22px;
   background: var(--glass-bg);
   border-radius: 12px;
   border: 1px solid var(--border-soft);
@@ -506,12 +506,13 @@ FILE: ./components/ServiceCard/ServiceCard.module.css
 }
 
 .card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-4px);
   border-color: var(--accent);
 }
 
 .card h2 {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+  font-size: 1.1rem;
 }
 
 =================================================
@@ -742,44 +743,90 @@ FILE: ./app/portfolio/data.ts
 =================================================
 export const portfolioData = [
   {
-    title: "Freelance Portfolio",
-    description: "Modular Next.js static portfolio architecture.",
+    title: "Freelance Portfolio System",
+    description:
+      "Modular Next.js architecture with strict CSS isolation and static export deployment.",
+    tech: ["Next.js", "TypeScript", "CSS Modules"],
   },
   {
-    title: "Enterprise Dashboard",
-    description: "Scalable UI system with strict component isolation.",
+    title: "Enterprise Dashboard UI",
+    description:
+      "Scalable UI architecture designed for enterprise-level maintainability.",
+    tech: ["React", "Component Design", "CI/CD"],
+  },
+  {
+    title: "SEO Optimized Blog Engine",
+    description:
+      "Structured content system with canonical, sitemap and JSON-LD support.",
+    tech: ["SEO", "Structured Data", "Static Export"],
   },
 ];
 
 =================================================
 FILE: ./app/portfolio/Portfolio.module.css
 =================================================
-.container {
-  min-height: 80vh;
-  padding: 80px 10%;
+.wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
 }
 
-.container h1 {
-  font-size: 2.5rem;
-  margin-bottom: 40px;
+.title {
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  margin-bottom: 50px;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
 }
 
 .grid {
   display: grid;
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
 }
 
 .card {
-  padding: 30px;
+  border-radius: 16px;
   background: var(--glass-bg);
-  border-radius: 12px;
   border: 1px solid var(--border-soft);
-  transition: 0.4s ease;
+  transition: 0.35s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  padding: 30px;
 }
 
 .card:hover {
-  transform: rotateX(6deg) rotateY(-6deg) scale(1.05);
+  transform: translateY(-8px);
   border-color: var(--accent);
+}
+
+.content {
+  text-align: left;
+}
+
+.content h2 {
+  font-size: 1.15rem;
+  margin-bottom: 10px;
+}
+
+.content p {
+  font-size: 0.9rem;
+  margin-bottom: 18px;
+}
+
+.link {
+  font-size: 0.85rem;
+  text-decoration: none;
+  color: var(--accent);
+  transition: 0.3s ease;
+}
+
+.link:hover {
+  letter-spacing: 0.5px;
 }
 
 =================================================
@@ -787,40 +834,94 @@ FILE: ./app/portfolio/page.tsx
 =================================================
 import styles from "./Portfolio.module.css";
 import { portfolioData } from "./data";
+import Link from "next/link";
 
 export default function Portfolio() {
   return (
-    <main className={styles.container}>
-      <h1>Portfolio</h1>
-      <div className={styles.grid}>
-        {portfolioData.map((item, index) => (
-          <div key={index} className={styles.card}>
-            <h2>{item.title}</h2>
-            <p>{item.description}</p>
-          </div>
-        ))}
+    <section className="section">
+      <div className={styles.wrapper}>
+        <h1 className={styles.title}>Selected Work</h1>
+
+        <p className={styles.subtitle}>
+          Systems built with clarity, modularity and scale in mind.
+        </p>
+
+        <div className={styles.grid}>
+          {portfolioData.map((item, index) => (
+            <div key={index} className={styles.card}>
+              <div className={styles.content}>
+                <h2>{item.title}</h2>
+                <p>{item.description}</p>
+
+                <Link href="/contact" className={styles.link}>
+                  Discuss Project →
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-    </main>
+    </section>
   );
 }
 
 =================================================
 FILE: ./app/about/About.module.css
 =================================================
-.card {
-  padding: 60px;
-  border-radius: 16px;
-  background: var(--glass-bg);
-  border: 1px solid var(--border-soft);
+.wrapper {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-.card h1 {
-  margin-bottom: 24px;
+.title {
+  margin-bottom: 30px;
+}
+
+.card {
+  padding: 32px;
+  border-radius: 14px;
+  background: var(--glass-bg);
+  border: 1px solid var(--border-soft);
+  margin-bottom: 50px;
 }
 
 .card p {
-  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.7;
   max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Highlight blocks */
+
+.highlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.block {
+  padding: 22px;
+  border-radius: 12px;
+  background: var(--glass-bg);
+  border: 1px solid var(--border-soft);
+  transition: 0.3s ease;
+}
+
+.block:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+}
+
+.block h3 {
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.block p {
+  font-size: 0.85rem;
 }
 
 =================================================
@@ -849,52 +950,42 @@ export const metadata: Metadata = {
   alternates: {
     canonical: `${siteUrl}/about/`,
   },
-  openGraph: {
-    title: "About Kamlesh",
-    description:
-      "Developer & Architect building modular scalable systems.",
-    url: `${siteUrl}/about/`,
-    type: "article",
-  },
 };
 
 export default function About() {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "AboutPage",
-    name: "About Kamlesh",
-    url: `${siteUrl}/about/`,
-    mainEntity: {
-      "@type": "Person",
-      name: "Kamlesh",
-      jobTitle: "Developer & Architect",
-      email: "patilkamlesh1811@gmail.com",
-      telephone: "+91-7770000347",
-      sameAs: [
-        "https://github.com/iamkamlesh18",
-        "https://linkedin.com/in/iamkamlesh18",
-        "https://iamkamlesh18.github.io/iamkamlesh18/",
-        "https://iamkamlesh18.github.io/my-portfolio/",
-      ],
-    },
-  };
-
   return (
-    <>
-      <main className="section">
+    <section className="section">
+      <div className={styles.wrapper}>
+        <h1 className={styles.title}>{aboutData.heading}</h1>
+
         <div className={styles.card}>
-          <h1>{aboutData.heading}</h1>
           <p>{aboutData.content}</p>
         </div>
-      </main>
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(jsonLd),
-        }}
-      />
-    </>
+        <div className={styles.highlights}>
+          <div className={styles.block}>
+            <h3>Architecture First</h3>
+            <p>
+              I design systems with long-term scalability in mind.
+            </p>
+          </div>
+
+          <div className={styles.block}>
+            <h3>Performance Focused</h3>
+            <p>
+              Clean builds, optimized rendering and structured code.
+            </p>
+          </div>
+
+          <div className={styles.block}>
+            <h3>Modular Thinking</h3>
+            <p>
+              Every component isolated. No CSS collisions. No chaos.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -1040,17 +1131,69 @@ FILE: ./app/page.module.css
 }
 
 =================================================
+FILE: ./app/blog/seo-fundamentals/page.tsx
+=================================================
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "SEO Fundamentals That Still Work",
+  description:
+    "Technical SEO principles that consistently rank.",
+};
+
+export default function SEOFundamentals() {
+  return (
+    <article className="section">
+      <div style={{ maxWidth: "750px", margin: "0 auto" }}>
+        <h1>SEO Fundamentals That Still Work</h1>
+
+        <p style={{ marginTop: "20px" }}>
+          SEO is not dead. It evolved.
+        </p>
+
+        <h2 style={{ marginTop: "40px" }}>
+          1. Technical Structure
+        </h2>
+        <p>
+          Clean HTML structure and semantic layout improve ranking.
+        </p>
+
+        <h2 style={{ marginTop: "30px" }}>
+          2. Core Web Vitals
+        </h2>
+        <p>
+          Speed and UX metrics directly affect search position.
+        </p>
+
+        <h2 style={{ marginTop: "30px" }}>
+          3. Authority Building
+        </h2>
+        <p>
+          Backlinks still matter — but relevance matters more.
+        </p>
+      </div>
+    </article>
+  );
+}
+
+=================================================
 FILE: ./app/blog/Blog.module.css
 =================================================
+.wrapper {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
 .grid {
-  margin-top: 60px;
+  margin-top: 40px;
   display: grid;
-  gap: 40px;
+  gap: 24px;
 }
 
 .card {
-  padding: 40px;
-  border-radius: 16px;
+  padding: 28px;
+  border-radius: 14px;
   background: var(--glass-bg);
   border: 1px solid var(--border-soft);
   text-decoration: none;
@@ -1059,8 +1202,62 @@ FILE: ./app/blog/Blog.module.css
 }
 
 .card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-4px);
   border-color: var(--accent);
+}
+
+.card h2 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+=================================================
+FILE: ./app/blog/digital-marketing/page.tsx
+=================================================
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Digital Marketing Strategy in 2026",
+  description:
+    "Modern performance-driven digital marketing strategies explained.",
+};
+
+export default function DigitalMarketing() {
+  return (
+    <article className="section">
+      <div style={{ maxWidth: "750px", margin: "0 auto" }}>
+        <h1>Digital Marketing Strategy in 2026</h1>
+
+        <p style={{ marginTop: "20px" }}>
+          The modern digital landscape is performance-driven,
+          automation-first, and data-backed.
+        </p>
+
+        <h2 style={{ marginTop: "40px" }}>
+          1. Performance Marketing First
+        </h2>
+        <p>
+          Campaigns must be measurable. Every click should have
+          attribution clarity.
+        </p>
+
+        <h2 style={{ marginTop: "30px" }}>
+          2. SEO + Content Architecture
+        </h2>
+        <p>
+          Structured content with technical SEO wins long term.
+        </p>
+
+        <h2 style={{ marginTop: "30px" }}>
+          3. Automation Pipelines
+        </h2>
+        <p>
+          Email, CRM, retargeting — automated flows outperform
+          manual marketing.
+        </p>
+      </div>
+    </article>
+  );
 }
 
 =================================================
@@ -1068,113 +1265,31 @@ FILE: ./app/blog/page.tsx
 =================================================
 import styles from "./Blog.module.css";
 import Link from "next/link";
-import { blogs } from "@/data/blogs";
 
 export const metadata = {
   title: "Blog",
-  description: "Insights on Digital Marketing & Architecture.",
+  description: "Insights on architecture, SEO, and digital systems.",
 };
 
 export default function Blog() {
   return (
     <section className="section">
-      <h1>Blog</h1>
+      <div className={styles.wrapper}>
+        <h1>Blog</h1>
 
-      <div className={styles.grid}>
-        {blogs.map((post) => (
-          <Link
-            key={post.slug}
-            href={`/blog/${post.slug}`}
-            className={styles.card}
-          >
-            <h2>{post.title}</h2>
-            <p>{post.excerpt}</p>
+        <div className={styles.grid}>
+          <Link href="/blog/digital-marketing" className={styles.card}>
+            <h2>Digital Marketing Strategy in 2026</h2>
+            <p>Modern performance-driven strategy explained.</p>
           </Link>
-        ))}
+
+          <Link href="/blog/seo-fundamentals" className={styles.card}>
+            <h2>SEO Fundamentals That Still Work</h2>
+            <p>Technical SEO principles that rank.</p>
+          </Link>
+        </div>
       </div>
     </section>
-  );
-}
-
-=================================================
-FILE: ./app/blog/[slug]/page.tsx
-=================================================
-import { blogs } from "@/data/blogs";
-import { notFound } from "next/navigation";
-import type { Metadata } from "next";
-
-const siteUrl =
-  "https://iamkamlesh18.github.io/freelanceportfolio";
-
-/* 🔥 REQUIRED FOR STATIC EXPORT */
-export function generateStaticParams() {
-  return blogs.map((blog) => ({
-    slug: blog.slug,
-  }));
-}
-
-/* 🔥 SEO PER BLOG */
-export function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Metadata {
-  const post = blogs.find((b) => b.slug === params.slug);
-
-  if (!post) {
-    return {};
-  }
-
-  return {
-    title: post.title,
-    description: post.excerpt,
-    alternates: {
-      canonical: `${siteUrl}/blog/${post.slug}/`,
-    },
-    openGraph: {
-      title: post.title,
-      description: post.excerpt,
-      url: `${siteUrl}/blog/${post.slug}/`,
-      type: "article",
-    },
-  };
-}
-
-export default function BlogDetail({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const post = blogs.find((b) => b.slug === params.slug);
-
-  if (!post) return notFound();
-
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    headline: post.title,
-    description: post.excerpt,
-    author: {
-      "@type": "Person",
-      name: "Kamlesh",
-    },
-    url: `${siteUrl}/blog/${post.slug}/`,
-  };
-
-  return (
-    <>
-      <section className="section">
-        <h1>{post.title}</h1>
-        <p style={{ marginTop: "30px" }}>{post.content}</p>
-      </section>
-
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(jsonLd),
-        }}
-      />
-    </>
   );
 }
 
@@ -1199,52 +1314,50 @@ export const servicesData = [
 =================================================
 FILE: ./app/services/Services.module.css
 =================================================
-.section {
-  padding: 120px 10%;
+.wrapper {
   text-align: center;
 }
 
 .title {
-  font-size: 2.2rem;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  margin-top: 20px;
 }
 
 .card {
-  padding: 40px 30px;
-  border-radius: 20px;
-  background: rgba(20, 20, 20, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  transition: 0.4s ease;
+  padding: 22px;
+  border-radius: 14px;
+  background: var(--glass-bg);
+  border: 1px solid var(--border-soft);
+  transition: 0.3s ease;
 }
 
 .card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-6px);
   border-color: var(--accent);
 }
 
 .card h3 {
-  margin-bottom: 15px;
-  font-size: 1.1rem;
+  margin-bottom: 8px;
+  font-size: 1.05rem;
 }
 
 .card p {
-  opacity: 0.7;
   font-size: 0.9rem;
+  line-height: 1.6;
 }
 
 /* Reveal animation */
 
 .hidden {
   opacity: 0;
-  transform: translateY(40px);
-  transition: 0.8s ease;
+  transform: translateY(20px);
+  transition: 0.6s ease;
 }
 
 .show {
@@ -1258,42 +1371,30 @@ FILE: ./app/services/page.tsx
 "use client";
 
 import styles from "./Services.module.css";
+import { servicesData } from "./data";
 import { useReveal } from "@/hooks/useReveal";
 
 export default function Services() {
   const { ref, visible } = useReveal();
 
-  const services = [
-    {
-      title: "Frontend Architecture",
-      desc: "Modern UI systems built with scalability and performance in mind.",
-    },
-    {
-      title: "Backend Engineering",
-      desc: "Secure, scalable APIs and automation-driven systems.",
-    },
-    {
-      title: "DevOps & CI/CD",
-      desc: "Streamlined deployment pipelines and release management.",
-    },
-  ];
-
   return (
-    <section className={styles.section}>
-      <h2 className={styles.title}>What I Build</h2>
+    <section className="section">
+      <div className={styles.wrapper}>
+        <h1 className={styles.title}>Services</h1>
 
-      <div
-        ref={ref}
-        className={`${styles.grid} ${
-          visible ? styles.show : styles.hidden
-        }`}
-      >
-        {services.map((service, i) => (
-          <div key={i} className={styles.card}>
-            <h3>{service.title}</h3>
-            <p>{service.desc}</p>
-          </div>
-        ))}
+        <div
+          ref={ref}
+          className={`${styles.grid} ${
+            visible ? styles.show : styles.hidden
+          }`}
+        >
+          {servicesData.map((service, index) => (
+            <div key={index} className={styles.card}>
+              <h3>{service.title}</h3>
+              <p>{service.description}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -1325,13 +1426,13 @@ FILE: ./app/globals.css
 }
 
 [data-theme="light"] {
-  --bg-primary: #ffffff;
-  --bg-secondary: #f5f5f5;
+  --bg-primary: #f7f8fa;
+  --bg-secondary: #ffffff;
   --glass-bg: rgba(0, 0, 0, 0.04);
 
   --text-primary: #111111;
   --text-secondary: rgba(0, 0, 0, 0.7);
-  --border-soft: rgba(0, 0, 0, 0.1);
+  --border-soft: rgba(0, 0, 0, 0.08);
 }
 
 html,
@@ -1343,22 +1444,23 @@ body {
 }
 
 .section {
-  padding: 120px 10%;
-  max-width: 1200px;
-  margin: auto;
+  padding: 80px 6%;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 h1 {
-  font-size: clamp(2.5rem, 4vw, 3.2rem);
+  font-size: clamp(2rem, 3vw, 2.6rem);
   line-height: 1.2;
 }
 
 h2 {
-  font-size: clamp(1.8rem, 3vw, 2.2rem);
+  font-size: clamp(1.4rem, 2vw, 1.8rem);
 }
 
 p {
-  line-height: 1.7;
+  line-height: 1.6;
+  color: var(--text-secondary);
 }
 
 =================================================
@@ -1416,29 +1518,76 @@ export const contactData = {
 =================================================
 FILE: ./app/contact/Contact.module.css
 =================================================
+.wrapper {
+  max-width: 850px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.title {
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  margin-bottom: 50px;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Contact cards */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  margin-bottom: 50px;
+}
+
 .card {
-  margin-top: 40px;
-  padding: 40px;
-  border-radius: 16px;
+  padding: 26px;
+  border-radius: 14px;
   background: var(--glass-bg);
   border: 1px solid var(--border-soft);
-}
-
-.links {
-  margin-top: 20px;
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.links a {
-  text-decoration: none;
-  color: var(--accent);
   transition: 0.3s ease;
 }
 
-.links a:hover {
-  transform: translateY(-2px);
+.card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+}
+
+.card h3 {
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+.card a {
+  text-decoration: none;
+  color: var(--accent);
+  font-size: 0.9rem;
+}
+
+/* Social links */
+
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+
+.socials a {
+  text-decoration: none;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  transition: 0.3s ease;
+}
+
+.socials a:hover {
+  color: var(--accent);
 }
 
 =================================================
@@ -1454,23 +1603,67 @@ export const metadata = {
 export default function Contact() {
   return (
     <section className="section">
-      <h1>Contact Me</h1>
+      <div className={styles.wrapper}>
+        <h1 className={styles.title}>Let’s Connect</h1>
 
-      <div className={styles.card}>
-        <p>Email: patilkamlesh1811@gmail.com</p>
-        <p>Phone: +91-7770000347</p>
+        <p className={styles.subtitle}>
+          Have a project in mind or just want to say hi?  
+          I’m always open to meaningful conversations.
+        </p>
 
-        <div className={styles.links}>
-          <a href="https://linkedin.com/in/iamkamlesh18" target="_blank">
+        <div className={styles.grid}>
+          <div className={styles.card}>
+            <h3>Email</h3>
+            <a href="mailto:patilkamlesh1811@gmail.com">
+              patilkamlesh1811@gmail.com
+            </a>
+          </div>
+
+          <div className={styles.card}>
+            <h3>Phone</h3>
+            <a href="tel:+917770000347">
+              +91 77700 00347
+            </a>
+          </div>
+
+          <div className={styles.card}>
+            <h3>WhatsApp</h3>
+            <a
+              href="https://wa.me/917770000347?text=Hi%20Kamlesh,%20I%20want%20to%20discuss%20a%20project."
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Start Conversation →
+            </a>
+          </div>
+        </div>
+
+        <div className={styles.socials}>
+          <a
+            href="https://linkedin.com/in/iamkamlesh18"
+            target="_blank"
+          >
             LinkedIn
           </a>
-          <a href="https://github.com/iamkamlesh18" target="_blank">
+
+          <a
+            href="https://github.com/iamkamlesh18"
+            target="_blank"
+          >
             GitHub
           </a>
-          <a href="https://iamkamlesh18.github.io/iamkamlesh18/" target="_blank">
+
+          <a
+            href="https://iamkamlesh18.github.io/iamkamlesh18/"
+            target="_blank"
+          >
             CV Website
           </a>
-          <a href="https://iamkamlesh18.github.io/my-portfolio/" target="_blank">
+
+          <a
+            href="https://iamkamlesh18.github.io/my-portfolio/"
+            target="_blank"
+          >
             Salesforce Portfolio
           </a>
         </div>
