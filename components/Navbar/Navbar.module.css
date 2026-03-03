@@ -8,7 +8,11 @@
   justify-content: space-between;
   align-items: center;
   padding: 18px 10%;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.scrolled {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
 .logo {
@@ -16,6 +20,11 @@
   font-weight: bold;
   color: var(--accent);
   cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
 }
 
 .links {
@@ -29,10 +38,14 @@
   color: white;
   font-size: 0.95rem;
   position: relative;
-  transition: 0.3s ease;
+  transition: all 0.3s ease;
 }
 
-/* Hover animation */
+.links a:hover {
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
 .links a::after {
   content: "";
   position: absolute;
@@ -48,11 +61,6 @@
   width: 100%;
 }
 
-.links a:hover {
-  color: var(--accent);
-}
-
-/* Active link */
 .active {
   color: var(--accent);
 }
@@ -68,13 +76,27 @@
   flex-direction: column;
   gap: 5px;
   cursor: pointer;
+  transition: 0.3s ease;
 }
 
 .menuBtn span {
   width: 22px;
   height: 2px;
   background: white;
-  transition: 0.3s;
+  transition: 0.3s ease;
+}
+
+/* Hamburger animation */
+.menuOpen span:nth-child(1) {
+  transform: rotate(45deg) translateY(7px);
+}
+
+.menuOpen span:nth-child(2) {
+  opacity: 0;
+}
+
+.menuOpen span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-7px);
 }
 
 @media (max-width: 768px) {

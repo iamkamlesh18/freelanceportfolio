@@ -3,11 +3,21 @@
 import styles from "./Navbar.module.css";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navLinks = [
     { name: "Home", path: "/" },
@@ -18,7 +28,11 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className={styles.navbar}>
+    <nav
+      className={`${styles.navbar} ${
+        scrolled ? styles.scrolled : ""
+      }`}
+    >
       <div className={styles.logo}>Kamlesh</div>
 
       <div className={`${styles.links} ${open ? styles.open : ""}`}>
@@ -38,7 +52,9 @@ export default function Navbar() {
       </div>
 
       <div
-        className={`${styles.menuBtn} ${open ? styles.menuOpen : ""}`}
+        className={`${styles.menuBtn} ${
+          open ? styles.menuOpen : ""
+        }`}
         onClick={() => setOpen(!open)}
       >
         <span />
