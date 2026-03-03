@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "deploy": "gh-pages -d out"
+    "deploy": "gh-pages -d out",
+    "prepare": "husky install"
   },
   "dependencies": {
     "next": "14.2.35",
@@ -20,6 +21,7 @@
     "@types/react-dom": "^18.2.22",
     "eslint": "^8.57.1",
     "eslint-config-next": "^14.2.35",
+    "husky": "^9.1.7",
     "typescript": "^5.4.5"
   }
 }

@@ -1,0 +1,1 @@
+bash scripts/generate-dump.sh && git add FULL_PROJECT_DUMP.txt

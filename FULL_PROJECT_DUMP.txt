@@ -1,89 +1,15 @@
 
 
 =================================================
-FILE: ./components/WhatsAppButton/WhatsAppButton.tsx
-=================================================
-"use client";
-
-import styles from "./WhatsAppButton.module.css";
-
-export default function WhatsAppButton() {
-  return (
-    <a
-      href="https://wa.me/917770000347?text=Hi%20Kamlesh,%20I%20want%20to%20discuss%20a%20project."
-      target="_blank"
-      rel="noopener noreferrer"
-      className={styles.button}
-      aria-label="Chat on WhatsApp"
-    >
-      <svg
-        width="26"
-        height="26"
-        viewBox="0 0 24 24"
-        fill="white"
-      >
-        <path d="M20.52 3.48A11.79 11.79 0 0012.05 0C5.48 0 .12 5.36.12 11.93c0 2.1.55 4.16 1.6 5.97L0 24l6.25-1.63a11.87 11.87 0 005.8 1.48h.01c6.57 0 11.93-5.36 11.93-11.93 0-3.18-1.24-6.17-3.47-8.44z" />
-      </svg>
-    </a>
-  );
-}
-
-=================================================
-FILE: ./components/WhatsAppButton/WhatsAppButton.module.css
-=================================================
-.button {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 58px;
-  height: 58px;
-  background: linear-gradient(135deg, #25D366, #1ebe5d);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 12px 35px rgba(0,0,0,0.4);
-  z-index: 1000;
-  transition: 0.3s ease;
-}
-
-.button:hover {
-  transform: translateY(-4px) scale(1.05);
-}
-
-=================================================
-FILE: ./components/SectionDivider/SectionDivider.module.css
-=================================================
-.divider {
-  width: 100%;
-  height: 1px;
-  margin: 80px 0;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.15),
-    transparent
-  );
-}
-
-=================================================
-FILE: ./components/SectionDivider/SectionDivider.tsx
-=================================================
-import styles from "./SectionDivider.module.css";
-
-export default function SectionDivider() {
-  return <div className={styles.divider} />;
-}
-
-=================================================
 FILE: ./components/Navbar/Navbar.module.css
 =================================================
 .wrapper {
   position: sticky;
-  top: 20px;
+  top: 0; /* Stick to very top */
+  z-index: 1000;
+  padding: 20px 0 0 0; /* visual breathing space */
   display: flex;
   justify-content: center;
-  z-index: 1000;
 }
 
 .navbar {
@@ -98,6 +24,7 @@ FILE: ./components/Navbar/Navbar.module.css
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
 
 .logo {
@@ -107,7 +34,7 @@ FILE: ./components/Navbar/Navbar.module.css
   text-decoration: none;
 }
 
-/* Links */
+/* Desktop Links */
 
 .links {
   display: flex;
@@ -117,7 +44,7 @@ FILE: ./components/Navbar/Navbar.module.css
 
 .link {
   text-decoration: none;
-  color: white;
+  color: var(--text-primary);
   font-size: 0.9rem;
   position: relative;
   transition: 0.3s ease;
@@ -139,7 +66,7 @@ FILE: ./components/Navbar/Navbar.module.css
   width: 100%;
 }
 
-/* Micro dot indicator */
+/* Active indicator */
 .active {
   color: var(--accent);
 }
@@ -156,44 +83,25 @@ FILE: ./components/Navbar/Navbar.module.css
   border-radius: 50%;
 }
 
-/* Right side */
-
-.right {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-/* Theme toggle */
-
-.themeToggle {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 1rem;
-  color: white;
-  transition: 0.3s ease;
-}
-
-.themeToggle:hover {
-  transform: rotate(20deg);
-}
-
-/* Mobile menu */
+/* Hamburger Button */
 
 .menuBtn {
   display: none;
   flex-direction: column;
   gap: 5px;
+  background: none;
+  border: none;
   cursor: pointer;
 }
 
 .menuBtn span {
   width: 22px;
   height: 2px;
-  background: white;
+  background: var(--text-primary);
   transition: 0.3s ease;
 }
+
+/* Animate to Cross */
 
 .menuOpen span:nth-child(1) {
   transform: rotate(45deg) translateY(6px);
@@ -207,25 +115,29 @@ FILE: ./components/Navbar/Navbar.module.css
   transform: rotate(-45deg) translateY(-6px);
 }
 
+/* Mobile */
+
 @media (max-width: 768px) {
+  .menuBtn {
+    display: flex;
+  }
+
   .links {
     position: absolute;
-    top: 80px;
+    top: 70px;
     right: 0;
     flex-direction: column;
+    gap: 22px;
+    padding: 30px 40px;
     background: var(--bg-secondary);
-    padding: 25px 40px;
-    gap: 20px;
-    transform: translateX(100%);
-    transition: 0.3s ease;
+    border-radius: 20px;
+    border: 1px solid var(--border-soft);
+    transform: translateX(120%);
+    transition: 0.4s ease;
   }
 
   .open {
     transform: translateX(0);
-  }
-
-  .menuBtn {
-    display: flex;
   }
 }
 
@@ -237,15 +149,11 @@ FILE: ./components/Navbar/Navbar.tsx
 import styles from "./Navbar.module.css";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function Navbar() {
   const pathname = usePathname();
-  const [dark, setDark] = useState(true);
-
-  useEffect(() => {
-    document.documentElement.dataset.theme = dark ? "dark" : "light";
-  }, [dark]);
+  const [open, setOpen] = useState(false);
 
   const links = [
     { name: "About", path: "/about" },
@@ -255,18 +163,25 @@ export default function Navbar() {
     { name: "Contact", path: "/contact" },
   ];
 
+  const handleClose = () => setOpen(false);
+
   return (
     <nav className={styles.wrapper}>
       <div className={styles.navbar}>
-        <Link href="/" className={styles.logo}>
+        <Link href="/" className={styles.logo} onClick={handleClose}>
           Kamlesh
         </Link>
 
-        <div className={styles.links}>
+        <div
+          className={`${styles.links} ${
+            open ? styles.open : ""
+          }`}
+        >
           {links.map((link) => (
             <Link
               key={link.path}
               href={link.path}
+              onClick={handleClose}
               className={`${styles.link} ${
                 pathname === link.path ? styles.active : ""
               }`}
@@ -277,10 +192,15 @@ export default function Navbar() {
         </div>
 
         <button
-          className={styles.themeToggle}
-          onClick={() => setDark(!dark)}
+          className={`${styles.menuBtn} ${
+            open ? styles.menuOpen : ""
+          }`}
+          onClick={() => setOpen(!open)}
+          aria-label="Toggle Menu"
         >
-          {dark ? "☀" : "🌙"}
+          <span></span>
+          <span></span>
+          <span></span>
         </button>
       </div>
     </nav>
@@ -291,57 +211,18 @@ export default function Navbar() {
 FILE: ./components/Footer/Footer.tsx
 =================================================
 import styles from "./Footer.module.css";
-import Link from "next/link";
 
 export default function Footer() {
   return (
     <footer className={styles.footer}>
-      <div className={styles.container}>
-        <div className={styles.brand}>
-          <h3>Kamlesh</h3>
-          <p>
-            Building scalable systems with clarity, performance
-            and intention.
-          </p>
-        </div>
+      <div className={styles.inner}>
+        <p className={styles.tagline}>
+          Built with clarity, performance and intention.
+        </p>
 
-        <div className={styles.links}>
-          <div>
-            <h4>Navigate</h4>
-            <Link href="/">Home</Link>
-            <Link href="/about">About</Link>
-            <Link href="/services">Services</Link>
-            <Link href="/portfolio">Portfolio</Link>
-            <Link href="/contact">Contact</Link>
-          </div>
-
-          <div>
-            <h4>Connect</h4>
-            <a
-              href="https://github.com/iamkamlesh18"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              GitHub
-            </a>
-            <a
-              href="https://www.linkedin.com/in/iamkamlesh18/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              LinkedIn
-            </a>
-            <a
-              href="mailto:patilkamlesh1811@gmail.com"
-            >
-              Email
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div className={styles.bottom}>
-        © {new Date().getFullYear()} Kamlesh. All rights reserved.
+        <p className={styles.copy}>
+          © {new Date().getFullYear()} Kamlesh. All rights reserved.
+        </p>
       </div>
     </footer>
   );
@@ -351,168 +232,29 @@ export default function Footer() {
 FILE: ./components/Footer/Footer.module.css
 =================================================
 .footer {
-  margin-top: 120px;
-  padding-top: 60px;
-  backdrop-filter: blur(12px);
+  flex-shrink: 0;
+  padding: 40px 0;
+  text-align: center;
   background: var(--glass-bg);
   border-top: 1px solid var(--border-soft);
 }
 
-.container {
-  width: 90%;
+.inner {
   max-width: 1100px;
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-  gap: 60px;
-  flex-wrap: wrap;
+  margin: 0 auto;
+  padding: 0 6%;
 }
 
-.brand h3 {
-  color: var(--accent);
-  margin-bottom: 12px;
-}
-
-.brand p {
-  max-width: 320px;
-  opacity: 0.7;
-  font-size: 0.9rem;
-}
-
-.links {
-  display: flex;
-  gap: 80px;
-}
-
-.links h4 {
-  margin-bottom: 14px;
-  font-size: 0.95rem;
-}
-
-.links a {
-  display: block;
-  margin-bottom: 10px;
-  text-decoration: none;
-  color: white;
+.tagline {
   font-size: 0.85rem;
-  opacity: 0.8;
-  transition: 0.3s ease;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
 }
 
-.links a:hover {
-  opacity: 1;
-  color: var(--accent);
-  transform: translateX(4px);
-}
-
-.bottom {
-  margin-top: 50px;
-  padding: 20px 0;
-  text-align: center;
-  font-size: 0.8rem;
-  opacity: 0.6;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-/* Responsive */
-
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-    gap: 40px;
-  }
-
-  .links {
-    gap: 40px;
-  }
-}
-
-=================================================
-FILE: ./components/Background/Background.tsx
-=================================================
-"use client";
-
-import styles from "./Background.module.css";
-
-export default function Background() {
-  return (
-    <>
-      <div className={styles.blob1}></div>
-      <div className={styles.blob2}></div>
-    </>
-  );
-}
-
-=================================================
-FILE: ./components/Background/Background.module.css
-=================================================
-.blob1,
-.blob2 {
-  position: fixed;
-  width: 600px;
-  height: 600px;
-  border-radius: 50%;
-  filter: blur(180px);
-  animation: float 14s ease-in-out infinite alternate;
-  pointer-events: none;
-  z-index: -1;
-}
-
-.blob1 {
-  background: rgba(138, 43, 226, 0.35);
-  top: -200px;
-  left: -200px;
-}
-
-.blob2 {
-  background: rgba(0, 150, 255, 0.35);
-  bottom: -200px;
-  right: -200px;
-}
-
-@keyframes float {
-  from { transform: translateY(0px); }
-  to   { transform: translateY(80px); }
-}
-
-=================================================
-FILE: ./components/ServiceCard/ServiceCard.tsx
-=================================================
-import styles from "./ServiceCard.module.css";
-
-interface Props {
-  title: string;
-  description: string;
-}
-
-export default function ServiceCard({ title, description }: Props) {
-  return (
-    <div className={styles.card}>
-      <h2>{title}</h2>
-      <p>{description}</p>
-    </div>
-  );
-}
-
-=================================================
-FILE: ./components/ServiceCard/ServiceCard.module.css
-=================================================
-.card {
-  padding: 22px;
-  background: var(--glass-bg);
-  border-radius: 12px;
-  border: 1px solid var(--border-soft);
-  transition: 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  border-color: var(--accent);
-}
-
-.card h2 {
-  margin-bottom: 8px;
-  font-size: 1.1rem;
+.copy {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
 }
 
 =================================================
@@ -564,105 +306,11 @@ export default eslintConfig;
 
 
 =================================================
-FILE: ./hooks/useMagnetic.ts
-=================================================
-import { useEffect, useRef } from "react";
-
-export function useMagnetic() {
-  const ref = useRef<HTMLAnchorElement | null>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    const handleMove = (e: MouseEvent) => {
-      const rect = el.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
-
-      el.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
-    };
-
-    const reset = () => {
-      el.style.transform = "translate(0,0)";
-    };
-
-    el.addEventListener("mousemove", handleMove);
-    el.addEventListener("mouseleave", reset);
-
-    return () => {
-      el.removeEventListener("mousemove", handleMove);
-      el.removeEventListener("mouseleave", reset);
-    };
-  }, []);
-
-  return ref;
-}
-
-=================================================
-FILE: ./hooks/useReveal.ts
-=================================================
-import { useEffect, useRef, useState } from "react";
-
-export function useReveal() {
-  const ref = useRef<HTMLDivElement | null>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    if (ref.current) observer.observe(ref.current);
-
-    return () => observer.disconnect();
-  }, []);
-
-  return { ref, visible };
-}
-
-=================================================
-FILE: ./data/portfolio.ts
-=================================================
-
-
-=================================================
-FILE: ./data/blogs.ts
-=================================================
-export const blogs = [
-  {
-    slug: "digital-marketing-strategy",
-    title: "Digital Marketing Strategy in 2026",
-    excerpt: "Modern performance-driven strategy explained.",
-    content:
-      "Full detailed article content here...",
-  },
-  {
-    slug: "seo-fundamentals",
-    title: "SEO Fundamentals That Still Work",
-    excerpt: "Technical SEO principles that rank.",
-    content:
-      "Full detailed article content here...",
-  },
-];
-
-=================================================
-FILE: ./data/services.ts
-=================================================
-
-
-=================================================
 FILE: ./app/layout.tsx
 =================================================
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton/WhatsAppButton";
 import type { Metadata } from "next";
 
 const siteUrl = "https://iamkamlesh18.github.io/freelanceportfolio";
@@ -675,26 +323,12 @@ export const metadata: Metadata = {
   },
   description:
     "Portfolio of Kamlesh — Developer, Architect, and Digital Systems Builder.",
-  keywords: [
-    "Kamlesh",
-    "Web Developer",
-    "Frontend Architect",
-    "Digital Marketing",
-    "Salesforce Developer",
-  ],
   openGraph: {
     title: "Kamlesh Portfolio",
     description:
       "Modular, scalable systems built with performance and clarity.",
     url: siteUrl,
     siteName: "Kamlesh Portfolio",
-    images: [
-      {
-        url: `${siteUrl}/og-image.png`,
-        width: 1200,
-        height: 630,
-      },
-    ],
     type: "website",
   },
   alternates: {
@@ -707,32 +341,12 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: "Kamlesh",
-    url: siteUrl,
-    sameAs: [
-      "https://github.com/iamkamlesh18",
-      "https://linkedin.com/in/iamkamlesh18",
-    ],
-    jobTitle: "Developer & Architect",
-  };
-
   return (
     <html lang="en">
-      <body>
+      <body className="app">
         <Navbar />
-        {children}
+        <main className="main-content">{children}</main>
         <Footer />
-        <WhatsAppButton />
-
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(jsonLd),
-          }}
-        />
       </body>
     </html>
   );
@@ -1030,12 +644,11 @@ FILE: ./app/page.module.css
 =================================================
 .hero {
   position: relative;
-  min-height: 95vh;
+  min-height: calc(100vh - 100px); /* subtract navbar space */
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0 10%;
-  overflow: hidden;
   text-align: center;
 }
 
@@ -1352,42 +965,20 @@ FILE: ./app/services/Services.module.css
   line-height: 1.6;
 }
 
-/* Reveal animation */
-
-.hidden {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: 0.6s ease;
-}
-
-.show {
-  opacity: 1;
-  transform: translateY(0);
-}
 
 =================================================
 FILE: ./app/services/page.tsx
 =================================================
-"use client";
-
 import styles from "./Services.module.css";
 import { servicesData } from "./data";
-import { useReveal } from "@/hooks/useReveal";
 
 export default function Services() {
-  const { ref, visible } = useReveal();
-
   return (
     <section className="section">
       <div className={styles.wrapper}>
         <h1 className={styles.title}>Services</h1>
 
-        <div
-          ref={ref}
-          className={`${styles.grid} ${
-            visible ? styles.show : styles.hidden
-          }`}
-        >
+        <div className={styles.grid}>
           {servicesData.map((service, index) => (
             <div key={index} className={styles.card}>
               <h3>{service.title}</h3>
@@ -1461,6 +1052,21 @@ h2 {
 p {
   line-height: 1.6;
   color: var(--text-secondary);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
 }
 
 =================================================
