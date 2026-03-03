@@ -1,17 +1,14 @@
+import styles from "./Contact.module.css";
+import { contactData } from "./data";
+
 export default function Contact() {
   return (
-    <section className="section text-center">
-      <div className="max-w-3xl mx-auto px-6">
-        <h1 className="text-5xl font-bold mb-6">Contact</h1>
-
-        <p className="text-gray-400 mb-4">
-          Email: patilkamlesh1811@gmail.com
-        </p>
-
-        <p className="text-gray-400">
-          Instagram: thekalpesh9
-        </p>
-      </div>
-    </section>
+    <main className={styles.container}>
+      <h1>{contactData.heading}</h1>
+      <p>{contactData.message}</p>
+      <a href={`mailto:${contactData.email}`}>
+        {contactData.email}
+      </a>
+    </main>
   );
 }

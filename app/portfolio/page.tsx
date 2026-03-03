@@ -1,12 +1,18 @@
+import styles from "./Portfolio.module.css";
+import { portfolioData } from "./data";
+
 export default function Portfolio() {
   return (
-    <section className="section text-center">
-      <div className="max-w-4xl mx-auto px-6">
-        <h1 className="text-5xl font-bold mb-6">Portfolio</h1>
-        <p className="text-gray-400">
-          Selected branding, marketing campaigns, and website projects.
-        </p>
+    <main className={styles.container}>
+      <h1>Portfolio</h1>
+      <div className={styles.grid}>
+        {portfolioData.map((item, index) => (
+          <div key={index} className={styles.card}>
+            <h2>{item.title}</h2>
+            <p>{item.description}</p>
+          </div>
+        ))}
       </div>
-    </section>
+    </main>
   );
 }

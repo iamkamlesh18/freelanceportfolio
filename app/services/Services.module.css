@@ -1,0 +1,15 @@
+.container {
+  min-height: 80vh;
+  padding: 80px 10%;
+}
+
+.container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+}
+
+.grid {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
