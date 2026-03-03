@@ -1,23 +1,68 @@
-.container {
-  min-height: 80vh;
-  padding: 100px 10%;
+.hero {
+  min-height: 90vh;
   display: flex;
-  flex-direction: column;
-  gap: 20px;
+  align-items: center;
   justify-content: center;
+  padding: 0 10%;
+  text-align: center;
 }
 
-.container h1 {
+.content {
+  max-width: 800px;
+}
+
+.title {
   font-size: 3rem;
+  line-height: 1.2;
 }
 
-.container h2 {
-  font-weight: 400;
-  color: var(--accent);
+.title span {
+  background: linear-gradient(
+    90deg,
+    var(--accent),
+    #8a2be2
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.container p {
-  max-width: 600px;
-  color: var(--text-light);
-  line-height: 1.6;
+.subtitle {
+  margin-top: 20px;
+  font-size: 1.1rem;
+  opacity: 0.8;
+}
+
+.actions {
+  margin-top: 35px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.primary {
+  padding: 12px 24px;
+  border-radius: 25px;
+  background: var(--accent);
+  color: black;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+.primary:hover {
+  transform: translateY(-3px);
+}
+
+.secondary {
+  padding: 12px 24px;
+  border-radius: 25px;
+  border: 1px solid white;
+  color: white;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.secondary:hover {
+  background: white;
+  color: black;
 }

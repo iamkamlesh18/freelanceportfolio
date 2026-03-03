@@ -2,12 +2,28 @@ import styles from "./page.module.css";
 
 export default function Home() {
   return (
-    <main className={styles.container}>
-      <h1>Hi, I'm Kamlesh</h1>
-      <h2>Building scalable digital experiences.</h2>
-      <p>
-        I architect modular, maintainable, and production-ready web systems.
-      </p>
-    </main>
+    <section className={styles.hero}>
+      <div className={styles.content}>
+        <h1 className={styles.title}>
+          Building Digital <span>Experiences</span>
+          <br />
+          That Feel Alive.
+        </h1>
+
+        <p className={styles.subtitle}>
+          Developer. Architect. Problem Solver.
+          Creating scalable systems with elegance and clarity.
+        </p>
+
+        <div className={styles.actions}>
+          <a href="/portfolio" className={styles.primary}>
+            View Work
+          </a>
+          <a href="/contact" className={styles.secondary}>
+            Contact Me
+          </a>
+        </div>
+      </div>
+    </section>
   );
 }
