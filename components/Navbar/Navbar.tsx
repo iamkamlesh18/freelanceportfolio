@@ -3,15 +3,11 @@
 import styles from "./Navbar.module.css";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function Navbar() {
   const pathname = usePathname();
-  const [dark, setDark] = useState(true);
-
-  useEffect(() => {
-    document.documentElement.dataset.theme = dark ? "dark" : "light";
-  }, [dark]);
+  const [open, setOpen] = useState(false);
 
   const links = [
     { name: "About", path: "/about" },
@@ -21,18 +17,25 @@ export default function Navbar() {
     { name: "Contact", path: "/contact" },
   ];
 
+  const handleClose = () => setOpen(false);
+
   return (
     <nav className={styles.wrapper}>
       <div className={styles.navbar}>
-        <Link href="/" className={styles.logo}>
+        <Link href="/" className={styles.logo} onClick={handleClose}>
           Kamlesh
         </Link>
 
-        <div className={styles.links}>
+        <div
+          className={`${styles.links} ${
+            open ? styles.open : ""
+          }`}
+        >
           {links.map((link) => (
             <Link
               key={link.path}
               href={link.path}
+              onClick={handleClose}
               className={`${styles.link} ${
                 pathname === link.path ? styles.active : ""
               }`}
@@ -43,10 +46,15 @@ export default function Navbar() {
         </div>
 
         <button
-          className={styles.themeToggle}
-          onClick={() => setDark(!dark)}
+          className={`${styles.menuBtn} ${
+            open ? styles.menuOpen : ""
+          }`}
+          onClick={() => setOpen(!open)}
+          aria-label="Toggle Menu"
         >
-          {dark ? "☀" : "🌙"}
+          <span></span>
+          <span></span>
+          <span></span>
         </button>
       </div>
     </nav>
