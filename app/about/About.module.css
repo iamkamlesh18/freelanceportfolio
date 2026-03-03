@@ -1,15 +1,15 @@
-.container {
-  min-height: 80vh;
-  padding: 80px 10%;
+.card {
+  padding: 60px;
+  border-radius: 16px;
+  background: var(--glass-bg);
+  border: 1px solid var(--border-soft);
 }
 
-.container h1 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
+.card h1 {
+  margin-bottom: 24px;
 }
 
-.container p {
+.card p {
   color: var(--text-secondary);
-  line-height: 1.6;
   max-width: 700px;
 }

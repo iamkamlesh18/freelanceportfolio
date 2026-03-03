@@ -4,8 +4,10 @@ import Footer from "@/components/Footer/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton/WhatsAppButton";
 import type { Metadata } from "next";
 
+const siteUrl = "https://iamkamlesh18.github.io/freelanceportfolio";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://iamkamlesh18.github.io/freelanceportfolio"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Kamlesh | Developer & Architect",
     template: "%s | Kamlesh",
@@ -19,12 +21,23 @@ export const metadata: Metadata = {
     "Digital Marketing",
     "Salesforce Developer",
   ],
-  authors: [{ name: "Kamlesh" }],
   openGraph: {
     title: "Kamlesh Portfolio",
     description:
       "Modular, scalable systems built with performance and clarity.",
+    url: siteUrl,
+    siteName: "Kamlesh Portfolio",
+    images: [
+      {
+        url: `${siteUrl}/og-image.png`,
+        width: 1200,
+        height: 630,
+      },
+    ],
     type: "website",
+  },
+  alternates: {
+    canonical: siteUrl,
   },
 };
 
@@ -33,6 +46,18 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Kamlesh",
+    url: siteUrl,
+    sameAs: [
+      "https://github.com/iamkamlesh18",
+      "https://linkedin.com/in/iamkamlesh18",
+    ],
+    jobTitle: "Developer & Architect",
+  };
+
   return (
     <html lang="en">
       <body>
@@ -40,6 +65,13 @@ export default function RootLayout({
         {children}
         <Footer />
         <WhatsAppButton />
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLd),
+          }}
+        />
       </body>
     </html>
   );
