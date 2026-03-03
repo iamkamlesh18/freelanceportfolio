@@ -1,20 +1,20 @@
+/* ================= HERO ================= */
+
 .hero {
-  position: relative;
-  min-height: calc(100vh - 100px); /* subtract navbar space */
+  min-height: 75vh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0 10%;
   text-align: center;
+  perspective: 1000px;
 }
 
 .content {
   max-width: 800px;
   opacity: 0;
   transform: translateY(40px);
-  transition: 1s ease;
-  position: relative;
-  z-index: 2;
+  transition: 0.8s ease;
 }
 
 .show {
@@ -23,15 +23,20 @@
 }
 
 .title {
-  font-size: 3rem;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
   line-height: 1.2;
 }
 
 .title span {
-  background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+  background: linear-gradient(
+    90deg,
+    var(--accent),
+    var(--accent-soft)
+  );
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
 .subtitle {
@@ -46,14 +51,13 @@
   gap: 20px;
 }
 
-/* Magnetic buttons base */
-
 .primary,
 .secondary {
-  padding: 12px 26px;
+  padding: 12px 28px;
   border-radius: 30px;
   transition: 0.3s ease;
   text-decoration: none;
+  font-weight: 500;
 }
 
 .primary {
@@ -61,102 +65,45 @@
   color: black;
 }
 
+.primary:hover {
+  transform: translateY(-3px);
+}
+
 .secondary {
-  border: 1px solid white;
-  color: white;
+  border: 1px solid var(--text-primary);
+  color: var(--text-primary);
 }
 
-/* Floating blobs */
-
-.blob1,
-.blob2 {
-  position: absolute;
-  width: 350px;
-  height: 350px;
-  border-radius: 50%;
-  filter: blur(120px);
-  animation: float 8s ease-in-out infinite alternate;
+.secondary:hover {
+  background: var(--glass-bg);
+  transform: translateY(-3px);
 }
 
-.blob1 {
-  background: rgba(138, 43, 226, 0.4);
-  top: -100px;
-  left: -100px;
-}
 
-.blob2 {
-  background: rgba(0, 150, 255, 0.4);
-  bottom: -100px;
-  right: -100px;
-}
+/* ================= SNAKE SECTION ================= */
 
-@keyframes float {
-  from {
-    transform: translateY(0px);
-  }
-  to {
-    transform: translateY(40px);
-  }
-}
-
-/* ===== SHAPES SECTION ===== */
-
-.shapesSection {
-  padding: 120px 6%;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.snakeWrapper {
-  width: 100%;
-  margin-bottom: 60px;
+.snakeSection {
+  padding: 60px 6%;
 }
 
 .snake {
   width: 100%;
-  height: 150px;
+  height: 140px;
 }
 
 .snakePath {
   fill: none;
   stroke: var(--accent);
   stroke-width: 4;
-  stroke-dasharray: 2000;
-  stroke-dashoffset: 2000;
-  animation: drawSnake 3s ease forwards;
-}
-
-@keyframes drawSnake {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-/* Reveal Text Block */
-
-.revealBlock {
-  max-width: 700px;
-  margin: 0 auto;
-  opacity: 0;
-  transform: translateY(40px);
-  animation: reveal 1.2s ease forwards;
-  animation-delay: 1.5s;
-}
-
-@keyframes reveal {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  stroke-dasharray: 1000;
+  transition: stroke-dashoffset 0.15s linear;
 }
 
 
-
-/* ===== VALUE SECTION ===== */
+/* ================= CORE / INTERACTIVE CARDS ================= */
 
 .valueSection {
-  padding: 120px 6%;
+  padding: 100px 6%;
   text-align: center;
 }
 
@@ -168,6 +115,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 30px;
+  perspective: 1000px;
 }
 
 .valueCard {
@@ -175,67 +123,37 @@
   border-radius: 18px;
   background: var(--glass-bg);
   border: 1px solid var(--border-soft);
-  transition: 0.3s ease;
-}
-
-.valueCard:hover {
-  transform: translateY(-8px);
-  border-color: var(--accent);
+  transition: transform 0.2s ease, border-color 0.3s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
 .valueCard h3 {
   margin-bottom: 12px;
 }
 
-.valueCard p {
-  font-size: 0.9rem;
+.valueCard:hover {
+  border-color: var(--accent);
 }
 
 
-
-/* ===== SKILLS SECTION ===== */
+/* ================= SKILLS SECTION ================= */
 
 .skillsSection {
-  position: relative;
-  padding: 140px 6%;
-  text-align: center;
-  overflow: hidden;
+  padding: 100px 6%;
 }
 
 .skillsTitle {
-  margin-bottom: 80px;
-}
-
-/* Background Shapes */
-
-.skillsBackground {
-  position: absolute;
-  top: -200px;
-  left: -200px;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, var(--accent-soft), transparent 70%);
-  opacity: 0.15;
-  filter: blur(120px);
-  animation: float 10s ease-in-out infinite alternate;
-  z-index: 0;
-}
-
-@keyframes float {
-  from { transform: translateY(0px); }
-  to { transform: translateY(60px); }
+  text-align: center;
+  margin-bottom: 60px;
 }
 
 .skillsGrid {
-  position: relative;
-  z-index: 1;
   max-width: 800px;
   margin: 0 auto;
   display: grid;
   gap: 40px;
 }
-
-/* Skill Card */
 
 .skillCard {
   text-align: left;
@@ -249,7 +167,6 @@
 }
 
 .progressBar {
-  width: 100%;
   height: 8px;
   background: var(--border-soft);
   border-radius: 20px;
@@ -263,55 +180,40 @@
     var(--accent),
     var(--accent-soft)
   );
-  width: 0;
-  animation: fillBar 1.8s ease forwards;
-}
-
-@keyframes fillBar {
-  from { width: 0; }
+  transition: width 1.2s ease;
 }
 
 
+/* ================= SMOOTH SCROLL PERFORMANCE ================= */
 
-/* ===== FLOW DIVIDER SECTION ===== */
-
-.flowSection {
-  position: relative;
-  padding: 120px 0;
-  text-align: center;
-  overflow: hidden;
+.hero,
+.snakeSection,
+.valueSection,
+.skillsSection {
+  will-change: transform;
 }
 
-.wave {
-  width: 100%;
-  height: 120px;
-}
 
-.wavePath {
-  fill: var(--glass-bg);
-  opacity: 0.4;
-  animation: waveMove 6s ease-in-out infinite alternate;
-}
+/* ================= RESPONSIVE ================= */
 
-@keyframes waveMove {
-  from {
-    transform: translateX(-20px);
+@media (max-width: 768px) {
+
+  .hero {
+    min-height: 70vh;
+    padding: 0 6%;
   }
-  to {
-    transform: translateX(20px);
+
+  .actions {
+    flex-direction: column;
+    gap: 15px;
   }
-}
 
-.flowContent {
-  max-width: 700px;
-  margin: 40px auto 0;
-  padding: 0 6%;
-}
+  .valueSection,
+  .skillsSection {
+    padding: 80px 6%;
+  }
 
-.flowContent h2 {
-  margin-bottom: 16px;
-}
-
-.flowContent p {
-  font-size: 0.95rem;
+  .snake {
+    height: 100px;
+  }
 }

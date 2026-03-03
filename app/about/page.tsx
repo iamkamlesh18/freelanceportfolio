@@ -1,52 +1,54 @@
+"use client";
+
 import styles from "./About.module.css";
 import { aboutData } from "./data";
-import type { Metadata } from "next";
+import Link from "next/link";
 
-const siteUrl =
-  "https://iamkamlesh18.github.io/freelanceportfolio";
-
-export const metadata: Metadata = {
-  title: "About",
-  description:
-    "Learn more about Kamlesh — Developer, Architect, and Digital Systems Builder.",
-  alternates: {
-    canonical: `${siteUrl}/about/`,
-  },
-};
-
-export default function About() {
+export default function AboutPage() {
   return (
-    <section className="section">
-      <div className={styles.wrapper}>
-        <h1 className={styles.title}>{aboutData.heading}</h1>
-
-        <div className={styles.card}>
-          <p>{aboutData.content}</p>
+    <div className={styles.wrapper}>
+      {/* HERO */}
+      <section className={styles.hero}>
+        <div className={styles.heroInner}>
+          <h1>{aboutData.hero.title}</h1>
+          <p>{aboutData.hero.subtitle}</p>
         </div>
+      </section>
 
-        <div className={styles.highlights}>
-          <div className={styles.block}>
-            <h3>Architecture First</h3>
-            <p>
-              I design systems with long-term scalability in mind.
-            </p>
-          </div>
-
-          <div className={styles.block}>
-            <h3>Performance Focused</h3>
-            <p>
-              Clean builds, optimized rendering and structured code.
-            </p>
-          </div>
-
-          <div className={styles.block}>
-            <h3>Modular Thinking</h3>
-            <p>
-              Every component isolated. No CSS collisions. No chaos.
-            </p>
-          </div>
+      {/* PILLARS - 3 INLINE */}
+      <section className={styles.pillarSection}>
+        <div className={styles.pillarGrid}>
+          {aboutData.pillars.map((pillar, index) => (
+            <div key={index} className={styles.pillarCard}>
+              <h2>{pillar.title}</h2>
+              <p>{pillar.description}</p>
+            </div>
+          ))}
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* TIMELINE - 3 INLINE */}
+      <section className={styles.timelineSection}>
+        <div className={styles.timelineGrid}>
+          {aboutData.timeline.map((item, index) => (
+            <div key={index} className={styles.timelineCard}>
+              <span className={styles.year}>{item.year}</span>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className={styles.ctaSection}>
+        <div className={styles.ctaCard}>
+          <h2>{aboutData.cta.title}</h2>
+          <Link href={aboutData.cta.link} className={styles.button}>
+            {aboutData.cta.button}
+          </Link>
+        </div>
+      </section>
+    </div>
   );
 }
