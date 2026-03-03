@@ -27,13 +27,6 @@ export const metadata: Metadata = {
       "Modular, scalable systems built with performance and clarity.",
     url: siteUrl,
     siteName: "Kamlesh Portfolio",
-    images: [
-      {
-        url: `${siteUrl}/og-image.png`,
-        width: 1200,
-        height: 630,
-      },
-    ],
     type: "website",
   },
   alternates: {
