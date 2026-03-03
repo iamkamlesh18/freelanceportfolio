@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://iamkamlesh18.github.io/freelanceportfolio/sitemap.xml

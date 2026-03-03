@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+>
+  <url>
+    <loc>https://iamkamlesh18.github.io/freelanceportfolio/</loc>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://iamkamlesh18.github.io/freelanceportfolio/about/</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://iamkamlesh18.github.io/freelanceportfolio/services/</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://iamkamlesh18.github.io/freelanceportfolio/portfolio/</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://iamkamlesh18.github.io/freelanceportfolio/blog/</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://iamkamlesh18.github.io/freelanceportfolio/blog/digital-marketing-strategy/</loc>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://iamkamlesh18.github.io/freelanceportfolio/blog/seo-fundamentals/</loc>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://iamkamlesh18.github.io/freelanceportfolio/contact/</loc>
+    <priority>0.8</priority>
+  </url>
+</urlset>
