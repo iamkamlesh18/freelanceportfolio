@@ -2,6 +2,18 @@
 
 echo "Updating FULL_PROJECT_DUMP.txt..."
 
+{
+echo "================================================="
+echo "PROJECT STRUCTURE"
+echo "================================================="
+echo ""
+tree -I "node_modules|.next|out|build|.git|hooks" -h -a -L 5
+echo ""
+echo ""
+echo "================================================="
+echo "PROJECT FILE CONTENTS"
+echo "================================================="
+
 find . \
 \( -path "./node_modules" -o -path "./.next" -o -path "./out" -o -path "./.git" \) -prune \
 -o -type f \
@@ -12,6 +24,8 @@ find . \
   echo "FILE: $file"
   echo "================================================="
   cat "$file"
-done > FULL_PROJECT_DUMP.txt
+done
+
+} > FULL_PROJECT_DUMP.txt
 
 echo "FULL_PROJECT_DUMP.txt updated."
