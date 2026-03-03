@@ -1,19 +1,24 @@
-.container {
-  min-height: 80vh;
-  padding: 80px 10%;
+.card {
+  margin-top: 40px;
+  padding: 40px;
+  border-radius: 16px;
+  background: var(--glass-bg);
+  border: 1px solid var(--border-soft);
 }
 
-.container h1 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
+.links {
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
-.container p {
-  color: var(--text-secondary);
-  margin-bottom: 20px;
-}
-
-.container a {
-  color: var(--accent);
+.links a {
   text-decoration: none;
+  color: var(--accent);
+  transition: 0.3s ease;
+}
+
+.links a:hover {
+  transform: translateY(-2px);
 }

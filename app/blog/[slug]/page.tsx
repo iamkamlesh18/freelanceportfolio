@@ -8,7 +8,7 @@ export default function BlogDetail({ params }: { params: { slug: string } }) {
   return (
     <section className="section">
       <h1>{post.title}</h1>
-      <p style={{ marginTop: "20px" }}>{post.content}</p>
+      <p style={{ marginTop: "30px" }}>{post.content}</p>
     </section>
   );
 }
