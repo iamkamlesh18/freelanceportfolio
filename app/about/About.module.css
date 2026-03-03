@@ -1,12 +1,55 @@
-.card {
-  padding: 40px;
-  border-radius: 14px;
-  background: var(--glass-bg);
-  border: 1px solid var(--border-soft);
-  max-width: 750px;
+.wrapper {
+  text-align: center;
+  max-width: 900px;
   margin: 0 auto;
 }
 
-.card h1 {
-  margin-bottom: 18px;
+.title {
+  margin-bottom: 30px;
+}
+
+.card {
+  padding: 32px;
+  border-radius: 14px;
+  background: var(--glass-bg);
+  border: 1px solid var(--border-soft);
+  margin-bottom: 50px;
+}
+
+.card p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Highlight blocks */
+
+.highlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.block {
+  padding: 22px;
+  border-radius: 12px;
+  background: var(--glass-bg);
+  border: 1px solid var(--border-soft);
+  transition: 0.3s ease;
+}
+
+.block:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+}
+
+.block h3 {
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.block p {
+  font-size: 0.85rem;
 }
