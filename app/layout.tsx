@@ -7,12 +7,21 @@ const siteUrl = "https://iamkamlesh18.github.io/freelanceportfolio";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+
   title: {
     default: "Kamlesh | Freelancer",
     template: "%s | Kamlesh",
   },
+
   description:
     "Portfolio of Kamlesh — A Digital Studio for Marketing, Branding, Graphics & Website Development.",
+
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
+
   openGraph: {
     title: "Kamlesh Portfolio",
     description:
@@ -21,6 +30,7 @@ export const metadata: Metadata = {
     siteName: "Kamlesh Portfolio",
     type: "website",
   },
+
   alternates: {
     canonical: siteUrl,
   },
