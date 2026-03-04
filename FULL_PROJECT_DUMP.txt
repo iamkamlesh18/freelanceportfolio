@@ -41,7 +41,7 @@ PROJECT STRUCTURE
 │   │   ├── [2.9K]  data.ts
 │   │   ├── [6.3K]  Home.module.css
 │   │   └── [3.6K]  Homepage.tsx
-│   ├── [1.0K]  layout.tsx
+│   ├── [1.1K]  layout.tsx
 │   ├── [   0]  page.module.css
 │   ├── [  98]  page.tsx
 │   ├── [4.0K]  portfolio
@@ -91,6 +91,7 @@ PROJECT STRUCTURE
 ├── [ 631]  package.json
 ├── [184K]  package-lock.json
 ├── [4.0K]  public
+│   ├── [ 363]  favicon.svg
 │   ├── [  94]  robots.txt
 │   └── [1.1K]  sitemap.xml
 ├── [1.4K]  README.md
@@ -98,7 +99,7 @@ PROJECT STRUCTURE
 │   └── [1.5K]  generate-dump.sh
 └── [ 713]  tsconfig.json
 
-19 directories, 60 files
+19 directories, 61 files
 
 
 =================================================
@@ -551,12 +552,21 @@ const siteUrl = "https://iamkamlesh18.github.io/freelanceportfolio";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+
   title: {
     default: "Kamlesh | Freelancer",
     template: "%s | Kamlesh",
   },
+
   description:
     "Portfolio of Kamlesh — A Digital Studio for Marketing, Branding, Graphics & Website Development.",
+
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
+
   openGraph: {
     title: "Kamlesh Portfolio",
     description:
@@ -565,6 +575,7 @@ export const metadata: Metadata = {
     siteName: "Kamlesh Portfolio",
     type: "website",
   },
+
   alternates: {
     canonical: siteUrl,
   },

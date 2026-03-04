@@ -17,9 +17,9 @@ export const metadata: Metadata = {
     "Portfolio of Kamlesh — A Digital Studio for Marketing, Branding, Graphics & Website Development.",
 
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
-    apple: "/favicon.svg",
+    icon: "/freelanceportfolio/favicon.svg",
+    shortcut: "/freelanceportfolio/favicon.svg",
+    apple: "/freelanceportfolio/favicon.svg",
   },
 
   openGraph: {
