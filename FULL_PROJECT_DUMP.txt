@@ -19,6 +19,32 @@ PROJECT STRUCTURE
 =================================================
 
 [4.0K]  .
+├── [4.0K]  .github
+│   └── [4.0K]  workflows
+│       └── [ 657]  deploy.yml
+├── [ 480]  .gitignore
+├── [4.0K]  .husky
+│   ├── [4.0K]  _
+│   │   ├── [   1]  .gitignore
+│   │   ├── [  39]  applypatch-msg
+│   │   ├── [  39]  commit-msg
+│   │   ├── [ 551]  h
+│   │   ├── [ 160]  husky.sh
+│   │   ├── [  39]  post-applypatch
+│   │   ├── [  39]  post-checkout
+│   │   ├── [  39]  post-commit
+│   │   ├── [  39]  post-merge
+│   │   ├── [  39]  post-rewrite
+│   │   ├── [  39]  pre-applypatch
+│   │   ├── [  39]  pre-auto-gc
+│   │   ├── [  39]  pre-commit
+│   │   ├── [  39]  pre-merge-commit
+│   │   ├── [  39]  pre-push
+│   │   ├── [  39]  pre-rebase
+│   │   └── [  39]  prepare-commit-msg
+│   └── [  63]  pre-push
+├── [ 642]  FULL_PROJECT_DUMP.txt
+├── [1.4K]  README.md
 ├── [4.0K]  app
 │   ├── [4.0K]  about
 │   │   ├── [2.1K]  About.module.css
@@ -32,25 +58,26 @@ PROJECT STRUCTURE
 │   │   └── [4.0K]  seo-fundamentals
 │   │       └── [1.0K]  page.tsx
 │   ├── [4.0K]  contact
-│   │   ├── [1.0K]  Contact.module.css
-│   │   ├── [ 151]  data.ts
-│   │   └── [1.9K]  page.tsx
+│   │   ├── [3.7K]  Contact.module.css
+│   │   ├── [4.0K]  ContactClient.tsx
+│   │   ├── [ 743]  contactData.ts
+│   │   └── [ 210]  page.tsx
 │   ├── [1.1K]  globals.css
 │   ├── [4.0K]  home
-│   │   ├── [2.9K]  data.ts
 │   │   ├── [6.3K]  Home.module.css
-│   │   └── [3.6K]  Homepage.tsx
+│   │   ├── [3.6K]  Homepage.tsx
+│   │   └── [2.9K]  data.ts
 │   ├── [1.0K]  layout.tsx
 │   ├── [   0]  page.module.css
 │   ├── [  98]  page.tsx
 │   ├── [4.0K]  portfolio
+│   │   ├── [ 924]  Portfolio.module.css
 │   │   ├── [ 642]  data.ts
-│   │   ├── [ 913]  page.tsx
-│   │   └── [ 924]  Portfolio.module.css
+│   │   └── [ 913]  page.tsx
 │   ├── [4.0K]  services
+│   │   ├── [2.5K]  Services.module.css
 │   │   ├── [ 378]  data.ts
-│   │   ├── [2.7K]  page.tsx
-│   │   └── [2.5K]  Services.module.css
+│   │   └── [2.7K]  page.tsx
 │   └── [ 581]  sitemap.ts
 ├── [4.0K]  components
 │   ├── [4.0K]  Footer
@@ -60,44 +87,18 @@ PROJECT STRUCTURE
 │       ├── [3.5K]  Navbar.module.css
 │       └── [3.0K]  Navbar.tsx
 ├── [ 465]  eslint.config.mjs
-├── [ 642]  FULL_PROJECT_DUMP.txt
-├── [4.0K]  .github
-│   └── [4.0K]  workflows
-│       └── [ 657]  deploy.yml
-├── [ 480]  .gitignore
-├── [4.0K]  .husky
-│   ├── [4.0K]  _
-│   │   ├── [  39]  applypatch-msg
-│   │   ├── [  39]  commit-msg
-│   │   ├── [   1]  .gitignore
-│   │   ├── [ 551]  h
-│   │   ├── [ 160]  husky.sh
-│   │   ├── [  39]  post-applypatch
-│   │   ├── [  39]  post-checkout
-│   │   ├── [  39]  post-commit
-│   │   ├── [  39]  post-merge
-│   │   ├── [  39]  post-rewrite
-│   │   ├── [  39]  pre-applypatch
-│   │   ├── [  39]  pre-auto-gc
-│   │   ├── [  39]  pre-commit
-│   │   ├── [  39]  pre-merge-commit
-│   │   ├── [  39]  prepare-commit-msg
-│   │   ├── [  39]  pre-push
-│   │   └── [  39]  pre-rebase
-│   └── [  63]  pre-push
-├── [ 212]  next.config.js
 ├── [ 228]  next-env.d.ts
-├── [ 597]  package.json
+├── [ 212]  next.config.js
 ├── [184K]  package-lock.json
+├── [ 631]  package.json
 ├── [4.0K]  public
 │   ├── [  94]  robots.txt
 │   └── [1.1K]  sitemap.xml
-├── [1.4K]  README.md
 ├── [4.0K]  scripts
 │   └── [1.5K]  generate-dump.sh
 └── [ 713]  tsconfig.json
 
-19 directories, 59 files
+19 directories, 60 files
 
 
 =================================================
@@ -2182,19 +2183,205 @@ export default function Page() {
 }
 
 =================================================
-FILE: ./app/contact/data.ts
+FILE: ./app/contact/ContactClient.tsx
 =================================================
-export const contactData = {
-  heading: "Contact Me",
-  email: "patilkamlesh1811@gmail.com",
-  message: "Let's build something scalable and clean.",
-};
+"use client";
+
+import styles from "./Contact.module.css";
+import { useState } from "react";
+import emailjs from "@emailjs/browser";
+import { contactData } from "./contactData";
+
+export default function ContactClient() {
+
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    project: "",
+    message: "",
+  });
+
+  const [status, setStatus] = useState("");
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+
+    e.preventDefault();
+
+    setStatus("Sending...");
+
+    try {
+
+      await emailjs.send(
+        "service_p661vj8",
+        "template_j09mtgn",
+        {
+          name: form.name,
+          email: form.email,
+          project: form.project,
+          message: form.message,
+        },
+        "sPur7hzafPZCDowIx"
+      );
+
+      setStatus("Message sent successfully!");
+
+      setForm({
+        name: "",
+        email: "",
+        project: "",
+        message: "",
+      });
+
+    } catch (error) {
+
+      setStatus("Something went wrong. Try again.");
+
+    }
+  };
+
+  return (
+    <section className="section">
+      <div className={styles.wrapper}>
+
+        <h1 className={styles.title}>
+          {contactData.heading}
+        </h1>
+
+        <p className={styles.subtitle}>
+          {contactData.subtitle}
+        </p>
+
+        {/* CONTACT CARDS */}
+
+        <div className={styles.grid}>
+
+          <div className={styles.card}>
+            <h3>Email</h3>
+            <a href={`mailto:${contactData.email}`}>
+              {contactData.email}
+            </a>
+          </div>
+
+          <div className={styles.card}>
+            <h3>Phone</h3>
+            <a href={`tel:${contactData.phone}`}>
+              {contactData.phone}
+            </a>
+          </div>
+
+          <div className={styles.card}>
+            <h3>WhatsApp</h3>
+            <a
+              href={contactData.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Start Conversation →
+            </a>
+          </div>
+
+        </div>
+
+        {/* SOCIAL LINKS */}
+
+        <div className={styles.socials}>
+          {contactData.socials.map((social) => (
+            <a key={social.name} href={social.url} target="_blank">
+              {social.name}
+            </a>
+          ))}
+        </div>
+
+        {/* CONTACT FORM */}
+
+        <div className={styles.formSection}>
+
+          <div className={styles.formHeader}>
+            <h2>Start a Project</h2>
+            <p>
+              Tell me about your project and I’ll get back to you shortly.
+            </p>
+          </div>
+
+          <form className={styles.form} onSubmit={handleSubmit}>
+
+            <div className={styles.row}>
+
+              <input
+                className={styles.input}
+                name="name"
+                placeholder="Your Name"
+                value={form.name}
+                onChange={handleChange}
+                required
+              />
+
+              <input
+                className={styles.input}
+                type="email"
+                name="email"
+                placeholder="Your Email"
+                value={form.email}
+                onChange={handleChange}
+                required
+              />
+
+            </div>
+
+            <input
+              className={styles.input}
+              name="project"
+              placeholder="Project Type"
+              value={form.project}
+              onChange={handleChange}
+            />
+
+            <textarea
+              className={styles.textarea}
+              name="message"
+              placeholder="Tell me about your project..."
+              value={form.message}
+              onChange={handleChange}
+              required
+            />
+
+            <button className={styles.button} type="submit">
+              Send Project Inquiry
+            </button>
+
+          </form>
+
+          {status && (
+            <p className={styles.status}>{status}</p>
+          )}
+
+        </div>
+
+      </div>
+    </section>
+  );
+}
 
 =================================================
 FILE: ./app/contact/Contact.module.css
 =================================================
+/* =======================================================
+   WRAPPER
+======================================================= */
+
 .wrapper {
-  max-width: 850px;
+  max-width: 900px;
   margin: 0 auto;
   text-align: center;
 }
@@ -2212,21 +2399,23 @@ FILE: ./app/contact/Contact.module.css
   margin-right: auto;
 }
 
-/* Contact cards */
+/* =======================================================
+   CONTACT CARDS
+======================================================= */
 
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 24px;
-  margin-bottom: 50px;
+  margin-bottom: 55px;
 }
 
 .card {
   padding: 26px;
-  border-radius: 14px;
+  border-radius: 16px;
   background: var(--glass-bg);
   border: 1px solid var(--border-soft);
-  transition: 0.3s ease;
+  transition: 0.25s ease;
 }
 
 .card:hover {
@@ -2245,104 +2434,207 @@ FILE: ./app/contact/Contact.module.css
   font-size: 0.9rem;
 }
 
-/* Social links */
+/* =======================================================
+   SOCIAL LINKS
+======================================================= */
 
 .socials {
   display: flex;
   justify-content: center;
   gap: 22px;
   flex-wrap: wrap;
+  margin-bottom: 70px;
 }
 
 .socials a {
   text-decoration: none;
   font-size: 0.9rem;
   color: var(--text-secondary);
-  transition: 0.3s ease;
+  transition: 0.25s ease;
 }
 
 .socials a:hover {
   color: var(--accent);
 }
 
+/* =======================================================
+   FORM SECTION
+======================================================= */
+
+.formSection {
+  margin-top: 20px;
+  padding: 50px;
+  border-radius: 20px;
+  background: var(--glass-bg);
+  border: 1px solid var(--border-soft);
+  text-align: left;
+}
+
+.formHeader {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.formHeader h2 {
+  margin-bottom: 8px;
+}
+
+.formHeader p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* =======================================================
+   FORM LAYOUT
+======================================================= */
+
+.form {
+  display: grid;
+  gap: 18px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+/* =======================================================
+   INPUTS
+======================================================= */
+
+.input,
+.textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border-soft);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  outline: none;
+  transition: 0.25s ease;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--text-secondary);
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+.textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+/* =======================================================
+   BUTTON
+======================================================= */
+
+.button {
+  margin-top: 10px;
+  padding: 14px;
+  border-radius: 40px;
+  border: none;
+  background: linear-gradient(
+    90deg,
+    var(--accent),
+    var(--accent-soft)
+  );
+  color: black;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* =======================================================
+   STATUS MESSAGE
+======================================================= */
+
+.status {
+  margin-top: 16px;
+  font-size: 0.9rem;
+  text-align: center;
+  color: var(--accent);
+}
+
+/* =======================================================
+   MOBILE
+======================================================= */
+
+@media (max-width: 768px) {
+
+  .formSection {
+    padding: 32px;
+  }
+
+  .row {
+    grid-template-columns: 1fr;
+  }
+
+  .grid {
+    gap: 20px;
+  }
+
+}
+
+=================================================
+FILE: ./app/contact/contactData.ts
+=================================================
+export const contactData = {
+  heading: "Let’s Connect",
+
+  subtitle:
+    "Have a project in mind or just want to say hi? I’m always open to meaningful conversations.",
+
+  email: "patilkamlesh1811@gmail.com",
+
+  phone: "+917770000347",
+
+  whatsapp:
+    "https://wa.me/917770000347?text=Hi%20Kamlesh,%20I%20want%20to%20discuss%20a%20project.",
+
+  socials: [
+    {
+      name: "LinkedIn",
+      url: "https://linkedin.com/in/iamkamlesh18",
+    },
+    {
+      name: "GitHub",
+      url: "https://github.com/iamkamlesh18",
+    },
+    {
+      name: "CV Website",
+      url: "https://iamkamlesh18.github.io/iamkamlesh18/",
+    },
+    {
+      name: "Salesforce Portfolio",
+      url: "https://iamkamlesh18.github.io/my-portfolio/",
+    },
+  ],
+};
+
 =================================================
 FILE: ./app/contact/page.tsx
 =================================================
-import styles from "./Contact.module.css";
+import ContactClient from "./ContactClient";
 
 export const metadata = {
   title: "Contact",
   description: "Get in touch with Kamlesh.",
 };
 
-export default function Contact() {
-  return (
-    <section className="section">
-      <div className={styles.wrapper}>
-        <h1 className={styles.title}>Let’s Connect</h1>
-
-        <p className={styles.subtitle}>
-          Have a project in mind or just want to say hi?  
-          I’m always open to meaningful conversations.
-        </p>
-
-        <div className={styles.grid}>
-          <div className={styles.card}>
-            <h3>Email</h3>
-            <a href="mailto:patilkamlesh1811@gmail.com">
-              patilkamlesh1811@gmail.com
-            </a>
-          </div>
-
-          <div className={styles.card}>
-            <h3>Phone</h3>
-            <a href="tel:+917770000347">
-              +91 77700 00347
-            </a>
-          </div>
-
-          <div className={styles.card}>
-            <h3>WhatsApp</h3>
-            <a
-              href="https://wa.me/917770000347?text=Hi%20Kamlesh,%20I%20want%20to%20discuss%20a%20project."
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Start Conversation →
-            </a>
-          </div>
-        </div>
-
-        <div className={styles.socials}>
-          <a
-            href="https://linkedin.com/in/iamkamlesh18"
-            target="_blank"
-          >
-            LinkedIn
-          </a>
-
-          <a
-            href="https://github.com/iamkamlesh18"
-            target="_blank"
-          >
-            GitHub
-          </a>
-
-          <a
-            href="https://iamkamlesh18.github.io/iamkamlesh18/"
-            target="_blank"
-          >
-            CV Website
-          </a>
-
-          <a
-            href="https://iamkamlesh18.github.io/my-portfolio/"
-            target="_blank"
-          >
-            Salesforce Portfolio
-          </a>
-        </div>
-      </div>
-    </section>
-  );
+export default function ContactPage() {
+  return <ContactClient />;
 }
