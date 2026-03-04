@@ -19,32 +19,6 @@ PROJECT STRUCTURE
 =================================================
 
 [4.0K]  .
-├── [4.0K]  .github
-│   └── [4.0K]  workflows
-│       └── [ 657]  deploy.yml
-├── [ 480]  .gitignore
-├── [4.0K]  .husky
-│   ├── [4.0K]  _
-│   │   ├── [   1]  .gitignore
-│   │   ├── [  39]  applypatch-msg
-│   │   ├── [  39]  commit-msg
-│   │   ├── [ 551]  h
-│   │   ├── [ 160]  husky.sh
-│   │   ├── [  39]  post-applypatch
-│   │   ├── [  39]  post-checkout
-│   │   ├── [  39]  post-commit
-│   │   ├── [  39]  post-merge
-│   │   ├── [  39]  post-rewrite
-│   │   ├── [  39]  pre-applypatch
-│   │   ├── [  39]  pre-auto-gc
-│   │   ├── [  39]  pre-commit
-│   │   ├── [  39]  pre-merge-commit
-│   │   ├── [  39]  pre-push
-│   │   ├── [  39]  pre-rebase
-│   │   └── [  39]  prepare-commit-msg
-│   └── [  63]  pre-push
-├── [ 642]  FULL_PROJECT_DUMP.txt
-├── [1.4K]  README.md
 ├── [4.0K]  app
 │   ├── [4.0K]  about
 │   │   ├── [2.1K]  About.module.css
@@ -63,20 +37,20 @@ PROJECT STRUCTURE
 │   │   └── [1.9K]  page.tsx
 │   ├── [1.1K]  globals.css
 │   ├── [4.0K]  home
+│   │   ├── [2.9K]  data.ts
 │   │   ├── [6.3K]  Home.module.css
-│   │   ├── [3.6K]  Homepage.tsx
-│   │   └── [2.9K]  data.ts
+│   │   └── [3.6K]  Homepage.tsx
 │   ├── [1.0K]  layout.tsx
 │   ├── [   0]  page.module.css
 │   ├── [  98]  page.tsx
 │   ├── [4.0K]  portfolio
-│   │   ├── [ 924]  Portfolio.module.css
 │   │   ├── [ 642]  data.ts
-│   │   └── [ 913]  page.tsx
+│   │   ├── [ 913]  page.tsx
+│   │   └── [ 924]  Portfolio.module.css
 │   ├── [4.0K]  services
-│   │   ├── [2.5K]  Services.module.css
 │   │   ├── [ 378]  data.ts
-│   │   └── [2.7K]  page.tsx
+│   │   ├── [2.7K]  page.tsx
+│   │   └── [2.5K]  Services.module.css
 │   └── [ 581]  sitemap.ts
 ├── [4.0K]  components
 │   ├── [4.0K]  Footer
@@ -86,13 +60,39 @@ PROJECT STRUCTURE
 │       ├── [3.5K]  Navbar.module.css
 │       └── [3.0K]  Navbar.tsx
 ├── [ 465]  eslint.config.mjs
-├── [ 228]  next-env.d.ts
+├── [ 642]  FULL_PROJECT_DUMP.txt
+├── [4.0K]  .github
+│   └── [4.0K]  workflows
+│       └── [ 657]  deploy.yml
+├── [ 480]  .gitignore
+├── [4.0K]  .husky
+│   ├── [4.0K]  _
+│   │   ├── [  39]  applypatch-msg
+│   │   ├── [  39]  commit-msg
+│   │   ├── [   1]  .gitignore
+│   │   ├── [ 551]  h
+│   │   ├── [ 160]  husky.sh
+│   │   ├── [  39]  post-applypatch
+│   │   ├── [  39]  post-checkout
+│   │   ├── [  39]  post-commit
+│   │   ├── [  39]  post-merge
+│   │   ├── [  39]  post-rewrite
+│   │   ├── [  39]  pre-applypatch
+│   │   ├── [  39]  pre-auto-gc
+│   │   ├── [  39]  pre-commit
+│   │   ├── [  39]  pre-merge-commit
+│   │   ├── [  39]  prepare-commit-msg
+│   │   ├── [  39]  pre-push
+│   │   └── [  39]  pre-rebase
+│   └── [  63]  pre-push
 ├── [ 212]  next.config.js
-├── [184K]  package-lock.json
+├── [ 228]  next-env.d.ts
 ├── [ 597]  package.json
+├── [184K]  package-lock.json
 ├── [4.0K]  public
 │   ├── [  94]  robots.txt
 │   └── [1.1K]  sitemap.xml
+├── [1.4K]  README.md
 ├── [4.0K]  scripts
 │   └── [1.5K]  generate-dump.sh
 └── [ 713]  tsconfig.json
