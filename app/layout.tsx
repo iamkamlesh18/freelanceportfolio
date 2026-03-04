@@ -8,11 +8,11 @@ const siteUrl = "https://iamkamlesh18.github.io/freelanceportfolio";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Kamlesh | Developer & Architect",
+    default: "Kamlesh | Freelancer",
     template: "%s | Kamlesh",
   },
   description:
-    "Portfolio of Kamlesh — Developer, Architect, and Digital Systems Builder.",
+    "Portfolio of Kamlesh — A Digital Studio for Marketing, Branding, Graphics & Website Development.",
   openGraph: {
     title: "Kamlesh Portfolio",
     description:
